@@ -25,6 +25,7 @@ export class FileComponent {
   private stack = [];
   private files: UploadFile[] = [];
   private subscription: Subscription;
+  private dragoverflag: boolean = false;
 
   constructor() {
     if (!this.customstyle) {
@@ -45,16 +46,30 @@ export class FileComponent {
     this.preventAndStop(event);
   }
 
+  public onDragOver(event: Event): void {
+    if (this.files.length == 0 || !this.dragoverflag) {
+      this.dragoverflag = true;
+      this.preventAndStop(event);
+    }
+  }
+
+  public onDragLeave(event: Event): void {
+    if (this.files.length != 0 || this.dragoverflag) {
+      this.dragoverflag = false;
+      this.preventAndStop(event);
+    }
+  }
+
 
   dropFiles(event: any) {
-
+    this.dragoverflag = false;
     event.dataTransfer.dropEffect = "copy";
     var length = event.dataTransfer.items.length;
     for (var i = 0; i < length; i++) {
       var entry = event.dataTransfer.items[i].webkitGetAsEntry();
       entry.getme
       if (entry.isFile) {
-        let toUpload: UploadFile = new UploadFile(entry.name, entry);        
+        let toUpload: UploadFile = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
       } else if (entry.isDirectory) {
         this.traverseFileTree(entry, entry.name);
@@ -67,6 +82,7 @@ export class FileComponent {
     this.subscription = timer.subscribe(t => {
       if (this.stack.length == 0) {
         this.onFileDrop.emit(new UploadEvent(this.files));
+        this.files = [];
         this.subscription.unsubscribe();
       }
     });

@@ -1,4 +1,6 @@
-<div id="dropZone"  [className]="customstyle" (dragover)="allowDrop($event)" (drop)="dropFiles($event)">
+<div id="dropZone"  [className]="customstyle" [class.over]="dragoverflag" 
+    (dragover)="allowDrop($event)" (drop)="dropFiles($event)" 
+    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
     <div class="content">
         {{headertext}}
     </div>

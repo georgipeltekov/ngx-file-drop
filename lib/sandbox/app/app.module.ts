@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FileDropModule } from '../../ngx-drop';
+import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';
 
 
 @NgModule({
