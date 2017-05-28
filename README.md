@@ -3,8 +3,8 @@
 
 An Angular 4 module for simple desktop file and folder drag and drop
 
-## Dependancies
-
+## DEMO
+You can check the [DEMO](https://georgipeltekov.github.io/) of the library 
 
 ## Installation
 
