@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 
@@ -27,19 +27,21 @@ export class FileComponent {
   private subscription: Subscription;
   private dragoverflag: boolean = false;
 
-  constructor() {
+  constructor(private zone: NgZone) {
+    window['angularComponentRef'] = {
+      zone: this.zone,
+      traverseFileTree: (item, path) => this.traverseFileTree(item, path),
+      addToQueue: (item) => this.addToQueue(item),
+      pushToStack: (str) => this.pushToStack(str),
+      popToStack: () => this.popToStack(),
+      component: this
+    };
     if (!this.customstyle) {
       this.customstyle = "drop-zone";
     }
   }
 
   ngOnInit() {
-    window.file = window.file || {};
-    window.file.namespace = window.file.namespace || {};
-    window.file.namespace.traverseFileTree = this.traverseFileTree.bind(this);
-    window.file.namespace.addToQueue = this.addToQueue.bind(this);
-    window.file.namespace.pushToStack = this.pushToStack.bind(this);
-    window.file.namespace.popToStack = this.popToStack.bind(this);
   }
 
   allowDrop(event: any) {
@@ -94,7 +96,9 @@ export class FileComponent {
     if (item.isFile) {
       let toUpload: UploadFile = new UploadFile(path, item);
       this.files.push(toUpload);
-      window.file.namespace.popToStack();
+      window['angularComponentRef'].zone.run(() => {
+        window['angularComponentRef'].popToStack();
+      });
     } else {
       this.pushToStack(path);
       path = path + "/";
@@ -104,13 +108,19 @@ export class FileComponent {
         //add empty folders
         if (entries.length == 0) {
           let toUpload: UploadFile = new UploadFile(path, item);
-          window.file.namespace.addToQueue(toUpload);
+          window['angularComponentRef'].zone.run(() => {
+            window['angularComponentRef'].addToQueue(toUpload);
+          });
         } else {
           for (var i = 0; i < entries.length; i++) {
-            window.file.namespace.traverseFileTree(entries[i], path + entries[i].name);
+            window['angularComponentRef'].zone.run(() => {
+              window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
+            });
           }
         }
-        window.file.namespace.popToStack();
+        window['angularComponentRef'].zone.run(() => {
+          window['angularComponentRef'].popToStack();
+        });
       });
     }
 
@@ -125,7 +135,7 @@ export class FileComponent {
     this.stack.push(str);
   }
 
-  popToStack(str) {
+  popToStack() {
     var value = this.stack.pop();
   }
 

@@ -1,7 +1,7 @@
 {
   "name": "ngx-file-drop",
-  "version": "1.0.1",
-  "license": "MIT",
+  "version": "1.0.3",
+  "license": "MIT",  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,15 @@
     "e2e": "ng e2e",
     "prepublish": "tsc"
   },
+  "keywords": [
+    "angular2",
+    "angular4",
+    "file drop",
+    "folder drop",
+    "file upload",
+    "folder upload"
+  ],
+  "typings": "./lib/typings.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/georgipeltekov/ngx-file-drop.git"

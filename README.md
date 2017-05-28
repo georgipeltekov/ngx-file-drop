@@ -3,15 +3,14 @@
 
 An Angular 4 module for simple desktop file and folder drag and drop
 
-
-
 ## Dependancies
 
 
 ## Installation
 
-
-
+```bash
+npm install ngx-file-drop --save
+```
 
 ## Usage
 
@@ -98,7 +97,14 @@ Name  | Description | Example |
 headertext  | Text to be displayed inside the drop box | headertext="Drop files here"
 customstyle  | Custom style class name to be used | customstyle="my-style"
 
+## License
+
+[MIT](/LICENSE)
+
 ## Change Log
+
+### 1.0.3
+* Update npm support
 
 ### 1.0.1
 * Doc update

@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist",
     "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
@@ -15,7 +15,7 @@
     "lib": [
       "es2016",
       "dom"
-    ],
+    ],    
     "paths": {
       "@angular/animations": ["../node_modules/@angular/animations"],
       "@angular/common": ["../node_modules/@angular/common"],
@@ -28,5 +28,12 @@
       "@angular/router": ["../node_modules/@angular/router"],
       "@angular/material": ["../node_modules/@angular/material"]
     }
-  }
+  },
+  
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true
+  },
+  "files": [
+        "./lib/ngx-drop/file-drop.module.ts"
+    ]
 }
