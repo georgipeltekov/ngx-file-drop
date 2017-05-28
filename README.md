@@ -103,6 +103,10 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 
 ## Change Log
 
+### 1.0.4
+* Add LICENSE
+* Add DEMO
+
 ### 1.0.3
 * Update npm support
 
