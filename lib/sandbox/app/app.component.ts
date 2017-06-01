@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UploadFile, UploadEvent } from 'ngx-file-drop/lib/ngx-drop';
+import { UploadFile, UploadEvent } from '../../ngx-drop';
 
 @Component({
   selector: 'demo-root',

@@ -16,12 +16,11 @@ branches:
 script:
   - npm install
     && npm install -g npm-cli-login
-    && npm install ngx-file-drop
     && ng build --prod
 # Notifications
 notifications:
   email:
     recipients:
-      - georgi.peltekov@accedia.com.com
+      - georgi.peltekov@accedia.com
     on_success: change
     on_failure: change
