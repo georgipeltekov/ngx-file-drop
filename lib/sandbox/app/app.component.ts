@@ -10,8 +10,12 @@ export class AppComponent {
 
   public files: UploadFile[] = [];
 
-  public dropped(event: UploadEvent) {  
+  public dropped(event: UploadEvent) {
     this.files = event.files;
-    console.log(this.files);
+    for (var file of event.files) {
+      file.fileEntry.file(info => {
+        console.log(info);
+      });
+    }
   }
 }
