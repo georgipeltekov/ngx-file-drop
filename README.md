@@ -1,3 +1,4 @@
+[![npm](https://img.shields.io/npm/v/ngx-file-drop.svg?style=flat-square)](https://www.npmjs.com/package/ngx-file-drop) [![npm downloads](https://img.shields.io/npm/dm/ngx-file-drop.svg)](https://www.npmjs.com/package/ngx-file-drop) [![Travis](https://img.shields.io/travis/georgipeltekov/ngx-file-drop.svg?style=flat-square)](https://travis-ci.org/danrevah/ngx-pipes) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/georgipeltekov/ngx-file-drop/blob/master/LICENSE)
 
 ## Overview
 
@@ -102,6 +103,10 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 [MIT](/LICENSE)
 
 ## Change Log
+
+### 1.0.5
+* Add Travis CI
+* Update Readme.md
 
 ### 1.0.4
 * Add LICENSE
