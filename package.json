@@ -13,11 +13,15 @@
   },
   "keywords": [
     "angular2",
+    "angular 2",
     "angular4",
+    "angular 4",
     "file drop",
     "folder drop",
     "file upload",
-    "folder upload"
+    "folder upload",
+    "typescript",
+    "drag and drop"
   ],
   "typings": "./lib/typings.d.ts",
   "repository": {

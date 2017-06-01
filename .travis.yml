@@ -1,0 +1,26 @@
+# Language
+language: node_js
+node_js:
+  - "node"
+
+
+# Branches to build
+branches:
+  only:
+    - master
+
+# Build both library and samples
+# We want any of these steps to fail the entire build
+# We're also doing the install step here too, as we need
+# the results of previous builds to install future builds
+script:
+  - npm install
+    && npm install -g npm-cli-login
+    && ng build --prod
+# Notifications
+notifications:
+  email:
+    recipients:
+      - georgi.peltekov@accedia.com.com
+    on_success: change
+    on_failure: change

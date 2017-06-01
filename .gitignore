@@ -3,6 +3,7 @@
 !lib
 !.editorconfig
 !.gitignore
+!.travis.yml
 !.angular-cli.json
 !karma.conf.js
 !package.json
