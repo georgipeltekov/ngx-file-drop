@@ -22,10 +22,10 @@ export class FileComponent {
   @Output()
   public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
 
-  private stack = [];
-  private files: UploadFile[] = [];
-  private subscription: Subscription;
-  private dragoverflag: boolean = false;
+  stack = [];
+  files: UploadFile[] = [];
+  subscription: Subscription;
+  dragoverflag: boolean = false;
 
   constructor(private zone: NgZone) {
     window['angularComponentRef'] = {
