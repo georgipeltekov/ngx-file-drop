@@ -16,7 +16,7 @@ branches:
 script:
   - npm install
     && npm install -g npm-cli-login
-    && ng build --prod
+    && ng build 
 # Notifications
 notifications:
   email:
