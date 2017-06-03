@@ -17,16 +17,11 @@
       "dom"
     ],    
     "paths": {
-      "@angular/animations": ["../node_modules/@angular/animations"],
       "@angular/common": ["../node_modules/@angular/common"],
       "@angular/compiler": ["../node_modules/@angular/compiler"],
       "@angular/core": ["../node_modules/@angular/core"],
-      "@angular/forms": ["../node_modules/@angular/forms"],
       "@angular/platform-browser": ["../node_modules/@angular/platform-browser"],
-      "@angular/platform-browser-dynamic": ["../node_modules/@angular/platform-browser-dynamic"],
-      "@angular/http": ["../node_modules/@angular/http"],
-      "@angular/router": ["../node_modules/@angular/router"],
-      "@angular/material": ["../node_modules/@angular/material"]
+      "@angular/platform-browser-dynamic": ["../node_modules/@angular/platform-browser-dynamic"]
     }
   },
   
