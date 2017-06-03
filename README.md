@@ -105,6 +105,9 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 ## Change Log
 
 ### 1.0.7
+* Remove some not needed dependencies
+
+### 1.0.7
 * Fix typos in Readme
 
 ### 1.0.5

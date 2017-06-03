@@ -1,7 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import {FileComponent} from './file-drop.component';
 
 @NgModule({
@@ -9,11 +6,7 @@ import {FileComponent} from './file-drop.component';
     FileComponent,
   ],
   exports: [FileComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
+  imports: [],
   providers: [],
   bootstrap: [FileComponent],
 })
