@@ -1,5 +1,5 @@
 <div id="dropZone"  [className]="customstyle" [class.over]="dragoverflag" 
-    (dragover)="allowDrop($event)" (drop)="dropFiles($event)" 
+    (drop)="dropFiles($event)" 
     (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
     <div class="content">
         {{headertext}}

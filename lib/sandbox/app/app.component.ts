@@ -18,4 +18,12 @@ export class AppComponent {
       });
     }
   }
+
+  public fileOver(event){
+    console.log(event);
+  }
+
+  public fileLeave(event){
+    console.log(event);
+  }
 }

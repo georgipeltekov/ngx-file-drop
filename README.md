@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { UploadFile, UploadEvent } from 'ngx-file-drop/lib/ngx-drop';
+import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';;
 
 @Component({
   selector: 'demo-root',
@@ -63,16 +63,30 @@ export class AppComponent {
 
   public files: UploadFile[] = [];
 
-  public dropped(event: UploadEvent) {  
+  public dropped(event: UploadEvent) {
     this.files = event.files;
-    console.log(this.files);
+    for (var file of event.files) {
+      file.fileEntry.file(info => {
+        console.log(info);
+      });
+    }
+  }
+
+  public fileOver(event){
+    console.log(event);
+  }
+
+  public fileLeave(event){
+    console.log(event);
   }
 }
+
 
 ```
 ```HTML
 <div class="center">
-    <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)"></file-drop>
+    <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
+    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"></file-drop>
     <div class="upload-table">
         <table class="table">
             <thead>
@@ -95,6 +109,8 @@ export class AppComponent {
 Name  | Description | Example | 
 ------------- | ------------- | -------------
 (onFileDrop)  | On drop function called after the files are read | (onFileDrop)="dropped($event)"
+(onFileOver)  | On drop over function| (onFileOver)="fileOver($event)"
+(onFileLeave)  | On drop leave function| (onFileOver)="fileLeave($event)"
 headertext  | Text to be displayed inside the drop box | headertext="Drop files here"
 customstyle  | Custom style class name to be used | customstyle="my-style"
 
@@ -104,7 +120,10 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 
 ## Change Log
 
-### 1.0.7
+### 1.0.9
+* Add onFileOver and onFileLeave functions
+
+### 1.0.8
 * Remove some not needed dependencies
 
 ### 1.0.7

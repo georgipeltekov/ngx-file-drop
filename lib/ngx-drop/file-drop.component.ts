@@ -21,6 +21,10 @@ export class FileComponent {
 
   @Output()
   public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
+  @Output()
+  public onFileOver: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  public onFileLeave: EventEmitter<any> = new EventEmitter<any>();
 
   stack = [];
   files: UploadFile[] = [];
@@ -44,22 +48,20 @@ export class FileComponent {
   ngOnInit() {
   }
 
-  allowDrop(event: any) {
+  public onDragOver(event: Event): void {
+    if (!this.dragoverflag) {
+      this.dragoverflag = true;
+      this.onFileOver.emit(event);
+    }
     this.preventAndStop(event);
   }
 
-  public onDragOver(event: Event): void {
-    if (this.files.length == 0 || !this.dragoverflag) {
-      this.dragoverflag = true;
-      this.preventAndStop(event);
-    }
-  }
-
   public onDragLeave(event: Event): void {
-    if (this.files.length != 0 || this.dragoverflag) {
+    if (this.dragoverflag) {
       this.dragoverflag = false;
-      this.preventAndStop(event);
+      this.onFileLeave.emit(event);
     }
+    this.preventAndStop(event);
   }
 
 
