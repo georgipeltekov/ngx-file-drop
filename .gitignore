@@ -9,6 +9,7 @@
 !package.json
 !protractor.conf.js
 !README.md
+!CHANGELOG.md
 !tsconfig.json
 !tslint.json
 !LICENSE

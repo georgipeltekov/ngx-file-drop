@@ -120,32 +120,4 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 
 ## Change Log
 
-### 1.0.10
-* Check subscription exists before unsubscribing
-
-### 1.0.9
-* Add onFileOver and onFileLeave functions
-
-### 1.0.8
-* Remove some not needed dependencies
-
-### 1.0.7
-* Fix typos in Readme
-
-### 1.0.5
-* Add Travis CI
-* Update Readme.md
-
-### 1.0.4
-* Add LICENSE
-* Add DEMO
-
-### 1.0.3
-* Update npm support
-
-### 1.0.1
-* Doc update
-* Style changes
-
-### 1.0.0
-* Initial release
+[CHANGELOG](/CHANGELOG)
