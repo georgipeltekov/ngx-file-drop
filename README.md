@@ -120,6 +120,9 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 
 ## Change Log
 
+### 1.0.10
+* Check subscription exists before unsubscribing
+
 ### 1.0.9
 * Add onFileOver and onFileLeave functions
 
