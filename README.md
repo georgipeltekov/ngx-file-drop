@@ -120,4 +120,4 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 
 ## Change Log
 
-[CHANGELOG](/CHANGELOG)
+[CHANGELOG](/CHANGELOG.md)
