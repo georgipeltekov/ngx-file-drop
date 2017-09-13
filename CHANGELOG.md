@@ -1,4 +1,7 @@
 ## Change Log
+### [1.0.12](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.11...v1.0.12) (2017-09-13)
+* Fix bugs in Safari
+
 ### [1.0.11](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.10...v1.0.11) (2017-09-13)
 * Fix bug in Safari
 

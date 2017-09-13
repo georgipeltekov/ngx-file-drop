@@ -78,9 +78,13 @@ export class FileComponent {
     for (var i = 0; i < length; i++) {
       var entry;
       if (event.dataTransfer.items) {
-        entry = event.dataTransfer.items[i].webkitGetAsEntry();
+        if (event.dataTransfer.items[i].webkitGetAsEntry) {
+          entry = event.dataTransfer.items[i].webkitGetAsEntry();
+        }
       } else {
-        entry = event.dataTransfer.files[i].webkitGetAsEntry()
+        if (event.dataTransfer.files[i].webkitGetAsEntry) {
+          entry = event.dataTransfer.files[i].webkitGetAsEntry()
+        }
       }
 
       if (entry.isFile) {
