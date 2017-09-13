@@ -1,4 +1,6 @@
 ## Change Log
+### [1.0.11](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.10...v1.0.11) (2017-09-13)
+* Fix bug in Safari
 
 ### [1.0.10](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.9...v1.0.10) (2017-06-21)
 * Check subscription exists before unsubscribing

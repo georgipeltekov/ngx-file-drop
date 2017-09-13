@@ -68,10 +68,21 @@ export class FileComponent {
   dropFiles(event: any) {
     this.dragoverflag = false;
     event.dataTransfer.dropEffect = "copy";
-    var length = event.dataTransfer.items.length;
+    var length;
+    if (event.dataTransfer.items) {
+      length = event.dataTransfer.items.length;
+    } else {
+      length = event.dataTransfer.files.length;
+    }
+
     for (var i = 0; i < length; i++) {
-      var entry = event.dataTransfer.items[i].webkitGetAsEntry();
-      entry.getme
+      var entry;
+      if (event.dataTransfer.items) {
+        entry = event.dataTransfer.items[i].webkitGetAsEntry();
+      } else {
+        entry = event.dataTransfer.files[i].webkitGetAsEntry()
+      }
+
       if (entry.isFile) {
         let toUpload: UploadFile = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
@@ -151,7 +162,7 @@ export class FileComponent {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
