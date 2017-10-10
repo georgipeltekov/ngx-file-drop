@@ -104,7 +104,7 @@ export class AppComponent {
 </div>
 ```
 
-## Paramenters
+## Parameters
 
 Name  | Description | Example | 
 ------------- | ------------- | -------------
