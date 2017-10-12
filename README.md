@@ -86,7 +86,9 @@ export class AppComponent {
 ```HTML
 <div class="center">
     <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
-    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"></file-drop>
+    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        <span>optional content (don't set headertext then)</span>
+    </file-drop>
     <div class="upload-table">
         <table class="table">
             <thead>
