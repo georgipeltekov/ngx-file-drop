@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';;
+import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop/lib/ngx-drop';
 
 @Component({
   selector: 'demo-root',
