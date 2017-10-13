@@ -1,4 +1,8 @@
 ## Change Log
+### [1.0.13](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.12...v1.0.13) (2017-10-13)
+* Fix typo in Readme
+* Add ng-content tag to support nested components within drag/drop region
+
 ### [1.0.12](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.11...v1.0.12) (2017-09-13)
 * Fix bugs in Safari
 
