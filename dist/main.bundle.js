@@ -188,25 +188,36 @@ var FileComponent = (function () {
             this.pushToStack(path);
             path = path + "/";
             var dirReader = item.createReader();
-            var entries = dirReader.readEntries(function (entries) {
-                //add empty folders
-                if (entries.length == 0) {
-                    var toUpload_1 = new __WEBPACK_IMPORTED_MODULE_2__upload_file_model__["a" /* UploadFile */](path, item);
-                    window['angularComponentRef'].zone.run(function () {
-                        window['angularComponentRef'].addToQueue(toUpload_1);
-                    });
-                }
-                else {
-                    for (var i = 0; i < entries.length; i++) {
+            var entries_1 = [];
+            var readEntries_1 = function () {
+                dirReader.readEntries(function (res) {
+                    if (!res.length) {
+                        //add empty folders
+                        if (entries_1.length == 0) {
+                            var toUpload_1 = new __WEBPACK_IMPORTED_MODULE_2__upload_file_model__["a" /* UploadFile */](path, item);
+                            window['angularComponentRef'].zone.run(function () {
+                                window['angularComponentRef'].addToQueue(toUpload_1);
+                            });
+                        }
+                        else {
+                            for (var i = 0; i < entries_1.length; i++) {
+                                window['angularComponentRef'].zone.run(function () {
+                                    window['angularComponentRef'].traverseFileTree(entries_1[i], path + entries_1[i].name);
+                                });
+                            }
+                        }
                         window['angularComponentRef'].zone.run(function () {
-                            window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
+                            window['angularComponentRef'].popToStack();
                         });
                     }
-                }
-                window['angularComponentRef'].zone.run(function () {
-                    window['angularComponentRef'].popToStack();
+                    else {
+                        //continue with the reading
+                        entries_1 = entries_1.concat(res);
+                        readEntries_1();
+                    }
                 });
-            });
+            };
+            readEntries_1();
         }
     };
     FileComponent.prototype.addToQueue = function (item) {

@@ -120,29 +120,41 @@ export class FileComponent {
       this.pushToStack(path);
       path = path + "/";
       var dirReader = item.createReader();
-      let entries = dirReader.readEntries(function (entries) {
+      let entries = [];
 
-        //add empty folders
-        if (entries.length == 0) {
-          let toUpload: UploadFile = new UploadFile(path, item);
-          window['angularComponentRef'].zone.run(() => {
-            window['angularComponentRef'].addToQueue(toUpload);
-          });
-        } else {
-          for (var i = 0; i < entries.length; i++) {
+      let readEntries = function () {
+        dirReader.readEntries(function (res) {
+          if (!res.length) {
+            //add empty folders
+            if (entries.length == 0) {
+              let toUpload: UploadFile = new UploadFile(path, item);
+              window['angularComponentRef'].zone.run(() => {
+                window['angularComponentRef'].addToQueue(toUpload);
+              });
+            } else {
+              for (var i = 0; i < entries.length; i++) {
+                window['angularComponentRef'].zone.run(() => {
+                  window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
+                });
+              }
+            }
             window['angularComponentRef'].zone.run(() => {
-              window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
+              window['angularComponentRef'].popToStack();
             });
+          } else {
+            //continue with the reading
+            entries = entries.concat(res);
+            readEntries();
           }
-        }
-        window['angularComponentRef'].zone.run(() => {
-          window['angularComponentRef'].popToStack();
         });
-      });
+      }
+
+      readEntries();
     }
 
 
   }
+
 
   private addToQueue(item) {
     this.files.push(item);
