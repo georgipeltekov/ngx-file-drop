@@ -1,6 +1,7 @@
 /*
 !e2e
 !lib
+!dist
 !.editorconfig
 !.gitignore
 !.travis.yml
@@ -21,5 +22,5 @@ npm-debug.log
 Thumbs.db
 .DS_Store
 # Ignored files
-*.js
-*.map
+#*.js
+#*.map
