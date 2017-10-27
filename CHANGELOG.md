@@ -1,4 +1,7 @@
 ## Change Log
+### [1.0.16](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.15...v1.0.16) (2017-10-27)
+* Prepare upgrade to Angular 5
+* Changes to confirm to the tslint rules 
 
 ### [1.0.15](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.14...v1.0.15) (2017-10-19)
 * Read entries should be called until all dirs are read
