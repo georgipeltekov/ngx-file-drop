@@ -1,4 +1,7 @@
 ## Change Log
+### [1.0.16](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.16...v1.0.17) (2017-10-27)
+* Revert Angular 5 changes
+
 ### [1.0.16](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.15...v1.0.16) (2017-10-27)
 * Prepare upgrade to Angular 5
 * Changes to confirm to the tslint rules 
