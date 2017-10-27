@@ -68,7 +68,7 @@ export class FileComponent implements OnDestroy {
   dropFiles(event: any) {
     this.dragoverflag = false;
     event.dataTransfer.dropEffect = "copy";
-    var length;
+    let length;
     if (event.dataTransfer.items) {
       length = event.dataTransfer.items.length;
     } else {
@@ -88,7 +88,7 @@ export class FileComponent implements OnDestroy {
       }
 
       if (entry.isFile) {
-        let toUpload: UploadFile = new UploadFile(entry.name, entry);
+        const toUpload: UploadFile = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
       } else if (entry.isDirectory) {
         this.traverseFileTree(entry, entry.name);
@@ -97,7 +97,7 @@ export class FileComponent implements OnDestroy {
 
     this.preventAndStop(event);
 
-    let timer = TimerObservable.create(200, 200);
+    const timer = TimerObservable.create(200, 200);
     this.subscription = timer.subscribe(t => {
       if (this.stack.length == 0) {
         this.onFileDrop.emit(new UploadEvent(this.files));
@@ -111,7 +111,7 @@ export class FileComponent implements OnDestroy {
   private traverseFileTree(item, path) {
 
     if (item.isFile) {
-      let toUpload: UploadFile = new UploadFile(path, item);
+      const toUpload: UploadFile = new UploadFile(path, item);
       this.files.push(toUpload);
       window['angularComponentRef'].zone.run(() => {
         window['angularComponentRef'].popToStack();
@@ -119,15 +119,15 @@ export class FileComponent implements OnDestroy {
     } else {
       this.pushToStack(path);
       path = path + "/";
-      var dirReader = item.createReader();
       let entries = [];
 
       let readEntries = function () {
+      const readEntries = function () {
         dirReader.readEntries(function (res) {
           if (!res.length) {
-            //add empty folders
-            if (entries.length == 0) {
-              let toUpload: UploadFile = new UploadFile(path, item);
+            // add empty folders
+            if (entries.length === 0) {
+              const toUpload: UploadFile = new UploadFile(path, item);
               window['angularComponentRef'].zone.run(() => {
                 window['angularComponentRef'].addToQueue(toUpload);
               });
@@ -165,7 +165,7 @@ export class FileComponent implements OnDestroy {
   }
 
   popToStack() {
-    var value = this.stack.pop();
+    const value = this.stack.pop();
   }
 
   private clearQueue() {
