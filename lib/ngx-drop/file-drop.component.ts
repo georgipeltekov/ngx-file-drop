@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
-import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { UploadFile } from './upload-file.model';
 import { UploadEvent } from './upload-event.model';
@@ -12,10 +12,10 @@ import { UploadEvent } from './upload-event.model';
 })
 
 
-export class FileComponent {
+export class FileComponent implements OnDestroy {
 
   @Input()
-  headertext: string = "";
+  headertext: string = '';
   @Input()
   customstyle: string = null;
 
@@ -41,12 +41,10 @@ export class FileComponent {
       component: this
     };
     if (!this.customstyle) {
-      this.customstyle = "drop-zone";
+      this.customstyle = 'drop-zone';
     }
   }
 
-  ngOnInit() {
-  }
 
   public onDragOver(event: Event): void {
     if (!this.dragoverflag) {
@@ -67,8 +65,8 @@ export class FileComponent {
 
   dropFiles(event: any) {
     this.dragoverflag = false;
-    event.dataTransfer.dropEffect = "copy";
-    var length;
+    event.dataTransfer.dropEffect = 'copy';
+    let length;
     if (event.dataTransfer.items) {
       length = event.dataTransfer.items.length;
     } else {
@@ -88,7 +86,7 @@ export class FileComponent {
       }
 
       if (entry.isFile) {
-        let toUpload: UploadFile = new UploadFile(entry.name, entry);
+        const toUpload: UploadFile = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
       } else if (entry.isDirectory) {
         this.traverseFileTree(entry, entry.name);
@@ -97,9 +95,9 @@ export class FileComponent {
 
     this.preventAndStop(event);
 
-    let timer = TimerObservable.create(200, 200);
+    const timer = TimerObservable.create(200, 200);
     this.subscription = timer.subscribe(t => {
-      if (this.stack.length == 0) {
+      if (this.stack.length === 0) {
         this.onFileDrop.emit(new UploadEvent(this.files));
         this.files = [];
         this.subscription.unsubscribe();
@@ -111,23 +109,23 @@ export class FileComponent {
   private traverseFileTree(item, path) {
 
     if (item.isFile) {
-      let toUpload: UploadFile = new UploadFile(path, item);
+      const toUpload: UploadFile = new UploadFile(path, item);
       this.files.push(toUpload);
       window['angularComponentRef'].zone.run(() => {
         window['angularComponentRef'].popToStack();
       });
     } else {
       this.pushToStack(path);
-      path = path + "/";
-      var dirReader = item.createReader();
+      path = path + '/';
+      const dirReader = item.createReader();
       let entries = [];
 
-      let readEntries = function () {
+      const readEntries = function () {
         dirReader.readEntries(function (res) {
           if (!res.length) {
-            //add empty folders
-            if (entries.length == 0) {
-              let toUpload: UploadFile = new UploadFile(path, item);
+            // add empty folders
+            if (entries.length === 0) {
+              const toUpload: UploadFile = new UploadFile(path, item);
               window['angularComponentRef'].zone.run(() => {
                 window['angularComponentRef'].addToQueue(toUpload);
               });
@@ -142,17 +140,15 @@ export class FileComponent {
               window['angularComponentRef'].popToStack();
             });
           } else {
-            //continue with the reading
+            // continue with the reading
             entries = entries.concat(res);
             readEntries();
           }
         });
-      }
+      };
 
       readEntries();
     }
-
-
   }
 
 
@@ -165,7 +161,7 @@ export class FileComponent {
   }
 
   popToStack() {
-    var value = this.stack.pop();
+    const value = this.stack.pop();
   }
 
   private clearQueue() {
