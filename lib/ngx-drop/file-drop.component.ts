@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 
@@ -12,7 +12,7 @@ import { UploadEvent } from './upload-event.model';
 })
 
 
-export class FileComponent {
+export class FileComponent implements OnDestroy {
 
   @Input()
   headertext: string = "";
