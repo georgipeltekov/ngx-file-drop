@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
-import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { UploadFile } from './upload-file.model';
 import { UploadEvent } from './upload-event.model';
@@ -15,7 +15,7 @@ import { UploadEvent } from './upload-event.model';
 export class FileComponent implements OnDestroy {
 
   @Input()
-  headertext: string = "";
+  headertext: string = '';
   @Input()
   customstyle: string = null;
 
@@ -41,12 +41,10 @@ export class FileComponent implements OnDestroy {
       component: this
     };
     if (!this.customstyle) {
-      this.customstyle = "drop-zone";
+      this.customstyle = 'drop-zone';
     }
   }
 
-  ngOnInit() {
-  }
 
   public onDragOver(event: Event): void {
     if (!this.dragoverflag) {
@@ -67,7 +65,7 @@ export class FileComponent implements OnDestroy {
 
   dropFiles(event: any) {
     this.dragoverflag = false;
-    event.dataTransfer.dropEffect = "copy";
+    event.dataTransfer.dropEffect = 'copy';
     let length;
     if (event.dataTransfer.items) {
       length = event.dataTransfer.items.length;
@@ -99,7 +97,7 @@ export class FileComponent implements OnDestroy {
 
     const timer = TimerObservable.create(200, 200);
     this.subscription = timer.subscribe(t => {
-      if (this.stack.length == 0) {
+      if (this.stack.length === 0) {
         this.onFileDrop.emit(new UploadEvent(this.files));
         this.files = [];
         this.subscription.unsubscribe();
@@ -118,10 +116,10 @@ export class FileComponent implements OnDestroy {
       });
     } else {
       this.pushToStack(path);
-      path = path + "/";
+      path = path + '/';
+      const dirReader = item.createReader();
       let entries = [];
 
-      let readEntries = function () {
       const readEntries = function () {
         dirReader.readEntries(function (res) {
           if (!res.length) {
@@ -142,17 +140,15 @@ export class FileComponent implements OnDestroy {
               window['angularComponentRef'].popToStack();
             });
           } else {
-            //continue with the reading
+            // continue with the reading
             entries = entries.concat(res);
             readEntries();
           }
         });
-      }
+      };
 
       readEntries();
     }
-
-
   }
 
 
