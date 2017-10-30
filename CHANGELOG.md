@@ -1,5 +1,8 @@
 ## Change Log
-### [1.0.16](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.16...v1.0.17) (2017-10-27)
+### [1.0.18](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.17...v1.0.18) (2017-10-30)
+* Allow angular 4 & 5
+
+### [1.0.17](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.16...v1.0.17) (2017-10-27)
 * Revert Angular 5 changes
 
 ### [1.0.16](https://github.com/georgipeltekov/ngx-file-drop/compare/v1.0.15...v1.0.16) (2017-10-27)
