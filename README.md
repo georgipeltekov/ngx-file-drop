@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FileDropModule } from 'ngx-file-drop';
+import { FileDropModule } from 'ngx-file-drop/src/lib/ngx-drop';
 
 
 @NgModule({
@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop';
+import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop/src/lib/ngx-drop';
 
 @Component({
   selector: 'demo-root',
