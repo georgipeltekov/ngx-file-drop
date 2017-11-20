@@ -2,7 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist",
-    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -15,21 +14,6 @@
     "lib": [
       "es2016",
       "dom"
-    ],    
-    "paths": {
-      "@angular/common": ["../node_modules/@angular/common"],
-      "@angular/compiler": ["../node_modules/@angular/compiler"],
-      "@angular/core": ["../node_modules/@angular/core"],
-      "@angular/platform-browser": ["../node_modules/@angular/platform-browser"],
-      "@angular/platform-browser-dynamic": ["../node_modules/@angular/platform-browser-dynamic"],
-      "@angular/router": ["../node_modules/@angular/router"]
-    }
-  },
-  
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true
-  },
-  "files": [
-        "./lib/ngx-drop/file-drop.module.ts"
     ]
+  }
 }

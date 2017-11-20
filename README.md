@@ -2,7 +2,7 @@
 
 ## Overview
 
-An Angular 4 module for simple desktop file and folder drag and drop
+An Angular 4 & 5 module for simple desktop file and folder drag and drop
 
 ## DEMO
 You can check the [DEMO](https://georgipeltekov.github.io/) of the library 
@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';
+import { FileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop/lib/ngx-drop';
+import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop';
 
 @Component({
   selector: 'demo-root',

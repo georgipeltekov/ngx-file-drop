@@ -1,4 +1,3 @@
-
 export class UploadFile {
     constructor(
         public relativePath: string,

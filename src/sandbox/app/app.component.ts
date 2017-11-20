@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UploadFile, UploadEvent } from '../../ngx-drop';
+import { UploadFile, UploadEvent } from '../../lib/ngx-drop';
 
 @Component({
   selector: 'demo-root',
@@ -12,18 +12,18 @@ export class AppComponent {
 
   public dropped(event: UploadEvent) {
     this.files = event.files;
-    for (var file of event.files) {
+    for (const file of event.files) {
       file.fileEntry.file(info => {
         console.log(info);
       });
     }
   }
 
-  public fileOver(event){
+  public fileOver(event) {
     console.log(event);
   }
 
-  public fileLeave(event){
+  public fileLeave(event) {
     console.log(event);
   }
 }

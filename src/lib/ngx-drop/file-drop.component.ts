@@ -73,15 +73,15 @@ export class FileComponent implements OnDestroy {
       length = event.dataTransfer.files.length;
     }
 
-    for (var i = 0; i < length; i++) {
-      var entry;
+    for (let i = 0; i < length; i++) {
+      let entry;
       if (event.dataTransfer.items) {
         if (event.dataTransfer.items[i].webkitGetAsEntry) {
           entry = event.dataTransfer.items[i].webkitGetAsEntry();
         }
       } else {
         if (event.dataTransfer.files[i].webkitGetAsEntry) {
-          entry = event.dataTransfer.files[i].webkitGetAsEntry()
+          entry = event.dataTransfer.files[i].webkitGetAsEntry();
         }
       }
 
@@ -130,7 +130,7 @@ export class FileComponent implements OnDestroy {
                 window['angularComponentRef'].addToQueue(toUpload);
               });
             } else {
-              for (var i = 0; i < entries.length; i++) {
+              for (let i = 0; i < entries.length; i++) {
                 window['angularComponentRef'].zone.run(() => {
                   window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
                 });
