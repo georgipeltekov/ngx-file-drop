@@ -1,26 +1,4 @@
-/*
-!e2e
-!src
 dist
-!.editorconfig
-!.gitignore
-!.travis.yml
-!.angular-cli.json
-!karma.conf.js
-!package.json
-!protractor.conf.js
-!README.md
-!CHANGELOG.md
-!tsconfig.json
-!tslint.json
-!LICENSE
-
-# Node generated files
 node_modules
-npm-debug.log
-# OS generated files
-Thumbs.db
-.DS_Store
-# Ignored files
-#*.js
-#*.map
+
+.editorconfig
