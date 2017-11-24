@@ -84,7 +84,10 @@ export class FileComponent implements OnDestroy {
           entry = event.dataTransfer.files[i].webkitGetAsEntry();
         }
       }
-
+      if (entry === null) {
+        continue;
+      }
+      
       if (entry.isFile) {
         const toUpload: UploadFile = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
