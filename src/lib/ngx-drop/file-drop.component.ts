@@ -84,7 +84,7 @@ export class FileComponent implements OnDestroy {
           entry = event.dataTransfer.files[i].webkitGetAsEntry();
         }
       }
-      if (entry === null) {
+      if (!entry) {
         const file = event.dataTransfer.files[i];
         entry = {
           name: file.name,
