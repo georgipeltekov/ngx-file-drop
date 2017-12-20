@@ -1,6 +1,6 @@
 {
   "name": "ngx-file-drop",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -16,6 +16,8 @@
     "angular 2",
     "angular4",
     "angular 4",
+    "angular5",
+    "angular 5",
     "file drop",
     "folder drop",
     "file upload",
