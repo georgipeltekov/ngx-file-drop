@@ -84,15 +84,24 @@ export class FileComponent implements OnDestroy {
           entry = event.dataTransfer.files[i].webkitGetAsEntry();
         }
       }
-      if (entry === null) {
-        continue;
-      }
-      
-      if (entry.isFile) {
-        const toUpload: UploadFile = new UploadFile(entry.name, entry);
+      if (!entry) {
+        const file = event.dataTransfer.files[i];
+        entry = {
+          name: file.name,
+          resultFile: file,
+          file: function(fileProcess) {
+                fileProcess(this.resultFile);
+          }
+        }
+        const /** @type {?} */ toUpload = new UploadFile(entry.name, entry);
         this.addToQueue(toUpload);
-      } else if (entry.isDirectory) {
-        this.traverseFileTree(entry, entry.name);
+      } else {
+        if (entry.isFile) {
+            const toUpload: UploadFile = new UploadFile(entry.name, entry);
+            this.addToQueue(toUpload);
+        } else if (entry.isDirectory) {
+            this.traverseFileTree(entry, entry.name);
+        }
       }
     }
 
