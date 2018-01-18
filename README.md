@@ -24,7 +24,7 @@ Simple usage example can be found in the sandbox folder
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FileDropModule } from 'ngx-file-drop';
@@ -37,7 +37,7 @@ import { FileDropModule } from 'ngx-file-drop';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     FileDropModule
   ],
   providers: [],
@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { FileDropModule, UploadFile, UploadEvent } from 'ngx-file-drop';
+import { UploadEvent, UploadFile } from 'ngx-file-drop';
 
 @Component({
   selector: 'demo-root',
@@ -65,7 +65,7 @@ export class AppComponent {
 
   public dropped(event: UploadEvent) {
     this.files = event.files;
-    for (var file of event.files) {
+    for (const file of event.files) {
       file.fileEntry.file(info => {
         console.log(info);
       });
