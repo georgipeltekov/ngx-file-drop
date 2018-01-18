@@ -1,4 +1,7 @@
 ## Change Log
+### [2.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.2...v2.0.3) (2018-01-18)
+* Multiple File-Drops
+
 ### [2.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.1...v2.0.2) (2017-12-20)
 * Using a workaround to enable getting files when no webkitGetAsEntry is supported
 
