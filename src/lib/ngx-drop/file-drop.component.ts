@@ -32,14 +32,6 @@ export class FileComponent implements OnDestroy {
   dragoverflag: boolean = false;
 
   constructor(private zone: NgZone) {
-    window['angularComponentRef'] = {
-      zone: this.zone,
-      traverseFileTree: (item, path) => this.traverseFileTree(item, path),
-      addToQueue: (item) => this.addToQueue(item),
-      pushToStack: (str) => this.pushToStack(str),
-      popToStack: () => this.popToStack(),
-      component: this
-    };
     if (!this.customstyle) {
       this.customstyle = 'drop-zone';
     }
@@ -123,14 +115,15 @@ export class FileComponent implements OnDestroy {
     if (item.isFile) {
       const toUpload: UploadFile = new UploadFile(path, item);
       this.files.push(toUpload);
-      window['angularComponentRef'].zone.run(() => {
-        window['angularComponentRef'].popToStack();
+      this.zone.run(() => {
+        this.popToStack();
       });
     } else {
       this.pushToStack(path);
       path = path + '/';
       const dirReader = item.createReader();
       let entries = [];
+      const thisObj = this;
 
       const readEntries = function () {
         dirReader.readEntries(function (res) {
@@ -138,18 +131,18 @@ export class FileComponent implements OnDestroy {
             // add empty folders
             if (entries.length === 0) {
               const toUpload: UploadFile = new UploadFile(path, item);
-              window['angularComponentRef'].zone.run(() => {
-                window['angularComponentRef'].addToQueue(toUpload);
+              thisObj.zone.run(() => {
+                thisObj.addToQueue(toUpload);
               });
             } else {
               for (let i = 0; i < entries.length; i++) {
-                window['angularComponentRef'].zone.run(() => {
-                  window['angularComponentRef'].traverseFileTree(entries[i], path + entries[i].name);
+                thisObj.zone.run(() => {
+                  thisObj.traverseFileTree(entries[i], path + entries[i].name);
                 });
               }
             }
-            window['angularComponentRef'].zone.run(() => {
-              window['angularComponentRef'].popToStack();
+            thisObj.zone.run(() => {
+              thisObj.popToStack();
             });
           } else {
             // continue with the reading
