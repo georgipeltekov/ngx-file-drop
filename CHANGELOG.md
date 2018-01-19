@@ -1,4 +1,7 @@
 ## Change Log
+### [2.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.3...v2.0.4) (2018-01-19)
+* Update angular-cli version due to vulnerable dependencies
+
 ### [2.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.2...v2.0.3) (2018-01-18)
 * Multiple File-Drops
 
