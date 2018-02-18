@@ -123,3 +123,9 @@ customstyle  | Custom style class name to be used | customstyle="my-style"
 ## Change Log
 
 [CHANGELOG](/CHANGELOG.md)
+
+## Donate Crypto
+* Ethereum: 0x22d557543ba1f8ac1dadc4eec5ea1b9ae03e0da8
+* Ripple: rJeJTHNyDkqurBBAAUzo4xhJyQo9mhTCJH
+
+
