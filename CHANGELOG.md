@@ -1,5 +1,8 @@
 ## Change Log
-### [2.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.3...v2.0.4) (2018-02-18)
+### [3.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.5...v3.0.0) (2018-03-15)
+* Added better typescript types
+
+### [2.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.4...v2.0.5) (2018-02-18)
 * Some cleanups
 
 ### [2.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.3...v2.0.4) (2018-01-19)
