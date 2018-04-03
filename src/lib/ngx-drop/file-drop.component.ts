@@ -19,6 +19,8 @@ export class FileComponent implements OnDestroy {
   headertext: string = '';
   @Input()
   customstyle: string = null;
+  @Input()
+  disableIf: boolean = false;
 
   @Output()
   public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
@@ -40,77 +42,83 @@ export class FileComponent implements OnDestroy {
 
 
   public onDragOver(event: Event): void {
-    if (!this.dragoverflag) {
-      this.dragoverflag = true;
-      this.onFileOver.emit(event);
+    if (!this.disableIf) {
+      if (!this.dragoverflag) {
+        this.dragoverflag = true;
+        this.onFileOver.emit(event);
+      }
+      this.preventAndStop(event);
     }
-    this.preventAndStop(event);
   }
 
   public onDragLeave(event: Event): void {
-    if (this.dragoverflag) {
-      this.dragoverflag = false;
-      this.onFileLeave.emit(event);
+    if (!this.disableIf) {
+      if (this.dragoverflag) {
+        this.dragoverflag = false;
+        this.onFileLeave.emit(event);
+      }
+      this.preventAndStop(event);
     }
-    this.preventAndStop(event);
   }
 
 
   dropFiles(event: any) {
-    this.dragoverflag = false;
-    event.dataTransfer.dropEffect = 'copy';
-    let length;
-    if (event.dataTransfer.items) {
-      length = event.dataTransfer.items.length;
-    } else {
-      length = event.dataTransfer.files.length;
-    }
-
-    for (let i = 0; i < length; i++) {
-      let entry: FileSystemEntry;
+    if (!this.disableIf) {
+      this.dragoverflag = false;
+      event.dataTransfer.dropEffect = 'copy';
+      let length;
       if (event.dataTransfer.items) {
-        if (event.dataTransfer.items[i].webkitGetAsEntry) {
-          entry = event.dataTransfer.items[i].webkitGetAsEntry();
-        }
+        length = event.dataTransfer.items.length;
       } else {
-        if (event.dataTransfer.files[i].webkitGetAsEntry) {
-          entry = event.dataTransfer.files[i].webkitGetAsEntry();
-        }
+        length = event.dataTransfer.files.length;
       }
-      if (!entry) {
-        const file: File = event.dataTransfer.files[i];
-        if (file) {
-          const fakeFileEntry: FileSystemFileEntry = {
-            name: file.name,
-            isDirectory: false,
-            isFile: true,
-            file: (callback: (filea: File) => void): void => {
-              callback(file)
-            }
+
+      for (let i = 0; i < length; i++) {
+        let entry: FileSystemEntry;
+        if (event.dataTransfer.items) {
+          if (event.dataTransfer.items[i].webkitGetAsEntry) {
+            entry = event.dataTransfer.items[i].webkitGetAsEntry();
           }
-          const toUpload: UploadFile = new UploadFile(fakeFileEntry.name, fakeFileEntry);
-          this.addToQueue(toUpload);
+        } else {
+          if (event.dataTransfer.files[i].webkitGetAsEntry) {
+            entry = event.dataTransfer.files[i].webkitGetAsEntry();
+          }
         }
-      } else {
-        if (entry.isFile) {
+        if (!entry) {
+          const file: File = event.dataTransfer.files[i];
+          if (file) {
+            const fakeFileEntry: FileSystemFileEntry = {
+              name: file.name,
+              isDirectory: false,
+              isFile: true,
+              file: (callback: (filea: File) => void): void => {
+                callback(file)
+              }
+            }
+            const toUpload: UploadFile = new UploadFile(fakeFileEntry.name, fakeFileEntry);
+            this.addToQueue(toUpload);
+          }
+        } else {
+          if (entry.isFile) {
             const toUpload: UploadFile = new UploadFile(entry.name, entry);
             this.addToQueue(toUpload);
-        } else if (entry.isDirectory) {
+          } else if (entry.isDirectory) {
             this.traverseFileTree(entry, entry.name);
+          }
         }
       }
+
+      this.preventAndStop(event);
+
+      const timer = TimerObservable.create(200, 200);
+      this.subscription = timer.subscribe(t => {
+        if (this.stack.length === 0) {
+          this.onFileDrop.emit(new UploadEvent(this.files));
+          this.files = [];
+          this.subscription.unsubscribe();
+        }
+      });
     }
-
-    this.preventAndStop(event);
-
-    const timer = TimerObservable.create(200, 200);
-    this.subscription = timer.subscribe(t => {
-      if (this.stack.length === 0) {
-        this.onFileDrop.emit(new UploadEvent(this.files));
-        this.files = [];
-        this.subscription.unsubscribe();
-      }
-    });
 
   }
 
