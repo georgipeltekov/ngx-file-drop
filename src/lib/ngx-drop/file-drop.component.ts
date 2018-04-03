@@ -4,6 +4,7 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { UploadFile } from './upload-file.model';
 import { UploadEvent } from './upload-event.model';
+import { FileSystemFileEntry, FileSystemEntryMetadata, FileSystemEntry, FileSystemDirectoryEntry } from './dom.types';
 
 @Component({
   selector: 'file-drop',
@@ -66,7 +67,7 @@ export class FileComponent implements OnDestroy {
     }
 
     for (let i = 0; i < length; i++) {
-      let entry;
+      let entry: FileSystemEntry;
       if (event.dataTransfer.items) {
         if (event.dataTransfer.items[i].webkitGetAsEntry) {
           entry = event.dataTransfer.items[i].webkitGetAsEntry();
@@ -77,16 +78,19 @@ export class FileComponent implements OnDestroy {
         }
       }
       if (!entry) {
-        const file = event.dataTransfer.files[i];
-        entry = {
-          name: file.name,
-          resultFile: file,
-          file: function(fileProcess) {
-                fileProcess(this.resultFile);
+        const file: File = event.dataTransfer.files[i];
+        if (file) {
+          const fakeFileEntry: FileSystemFileEntry = {
+            name: file.name,
+            isDirectory: false,
+            isFile: true,
+            file: (callback: (filea: File) => void): void => {
+              callback(file)
+            }
           }
+          const toUpload: UploadFile = new UploadFile(fakeFileEntry.name, fakeFileEntry);
+          this.addToQueue(toUpload);
         }
-        const /** @type {?} */ toUpload = new UploadFile(entry.name, entry);
-        this.addToQueue(toUpload);
       } else {
         if (entry.isFile) {
             const toUpload: UploadFile = new UploadFile(entry.name, entry);
@@ -110,7 +114,7 @@ export class FileComponent implements OnDestroy {
 
   }
 
-  private traverseFileTree(item, path) {
+  private traverseFileTree(item: FileSystemEntry, path: string) {
 
     if (item.isFile) {
       const toUpload: UploadFile = new UploadFile(path, item);
@@ -121,7 +125,7 @@ export class FileComponent implements OnDestroy {
     } else {
       this.pushToStack(path);
       path = path + '/';
-      const dirReader = item.createReader();
+      const dirReader = (item as FileSystemDirectoryEntry).createReader();
       let entries = [];
       const thisObj = this;
 
@@ -157,7 +161,7 @@ export class FileComponent implements OnDestroy {
   }
 
 
-  private addToQueue(item) {
+  private addToQueue(item: UploadFile) {
     this.files.push(item);
   }
 

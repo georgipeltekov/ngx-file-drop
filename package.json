@@ -1,6 +1,6 @@
 {
   "name": "ngx-file-drop",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -35,12 +35,12 @@
     "@angular/core": ">=4.00 <6.0.0",
     "@angular/platform-browser": ">=4.00 <6.0.0",
     "@angular/platform-browser-dynamic": ">=4.00 <6.0.0",
-    "@angular/router": ">=4.00 <6.0.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.2",
+    "@angular/cli": "1.5.5",
+    "@angular-devkit/core": "0.0.28",
     "@angular/compiler-cli": ">=4.00 <6.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "8.0.53",
