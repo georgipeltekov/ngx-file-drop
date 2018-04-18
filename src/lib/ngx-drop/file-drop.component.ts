@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, NgZone, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, OnDestroy, Renderer } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
@@ -34,15 +34,27 @@ export class FileComponent implements OnDestroy {
   subscription: Subscription;
   dragoverflag: boolean = false;
 
-  constructor(private zone: NgZone) {
+  globalDisable: boolean = false;
+  globalStart: Function;
+  globalEnd: Function;
+
+  constructor(
+    private zone: NgZone,
+    private renderer: Renderer
+  ) {
     if (!this.customstyle) {
       this.customstyle = 'drop-zone';
+      this.globalStart = this.renderer.listen('document', 'dragstart', (evt) => {
+        this.globalDisable = true;
+      });
+      this.globalEnd = this.renderer.listen('document', 'dragend', (evt) => {
+        this.globalDisable = false;
+      });
     }
   }
-
-
+  
   public onDragOver(event: Event): void {
-    if (!this.disableIf) {
+    if (!this.globalDisable && !this.disableIf) {
       if (!this.dragoverflag) {
         this.dragoverflag = true;
         this.onFileOver.emit(event);
@@ -52,7 +64,7 @@ export class FileComponent implements OnDestroy {
   }
 
   public onDragLeave(event: Event): void {
-    if (!this.disableIf) {
+    if (!this.globalDisable && !this.disableIf) {
       if (this.dragoverflag) {
         this.dragoverflag = false;
         this.onFileLeave.emit(event);
@@ -60,10 +72,9 @@ export class FileComponent implements OnDestroy {
       this.preventAndStop(event);
     }
   }
-
-
+  
   dropFiles(event: any) {
-    if (!this.disableIf) {
+    if (!this.globalDisable && !this.disableIf) {
       this.dragoverflag = false;
       event.dataTransfer.dropEffect = 'copy';
       let length;
@@ -167,8 +178,7 @@ export class FileComponent implements OnDestroy {
       readEntries();
     }
   }
-
-
+  
   private addToQueue(item: UploadFile) {
     this.files.push(item);
   }
@@ -194,6 +204,8 @@ export class FileComponent implements OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    this.globalStart();
+    this.globalEnd();
   }
 }
 
