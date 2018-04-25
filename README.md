@@ -143,6 +143,7 @@ Name  | Description | Example |
 (onFileLeave)  | On drop leave function| (onFileOver)="fileLeave($event)"
 headertext  | Text to be displayed inside the drop box | headertext="Drop files here"
 customstyle  | Custom style class name to be used | customstyle="my-style"
+[disableIf]  | Conditionally disable the dropzone  | [disableIf]="condition"
 
 ## License
 
