@@ -38,6 +38,12 @@ export class FileComponent implements OnDestroy {
     if (!this.customstyle) {
       this.customstyle = 'drop-zone';
     }
+    this.globalStart = this.renderer.listen('document', 'dragstart', (evt) => {
+      this.globalDisable = true;
+    });
+    this.globalEnd = this.renderer.listen('document', 'dragend', (evt) => {
+      this.globalDisable = false;
+    });
   }
 
 
