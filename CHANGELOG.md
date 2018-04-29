@@ -1,4 +1,10 @@
 ## Change Log
+### [3.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v3.0.1...v3.0.2) (2018-04-29)
+* Allow drag events to be ignored that originate from document (introduced in 3.0.1) even if using custom styles
+
+### [3.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v3.0.0...v3.0.1) (2018-04-25)
+* Conditionally Disable Dropzone and Ignore DragEvents that initiate from within the browser document
+
 ### [3.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v2.0.5...v3.0.0) (2018-03-15)
 * Added better typescript types
 
