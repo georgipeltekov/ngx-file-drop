@@ -2,7 +2,9 @@
 
 ## Overview
 
-An Angular 4 & 5 module for simple desktop file and folder drag and drop
+An Angular 6 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
+
+For Angular 5 and 4 support please use older versions.
 
 ## DEMO
 You can check the [DEMO](https://georgipeltekov.github.io/) of the library 
