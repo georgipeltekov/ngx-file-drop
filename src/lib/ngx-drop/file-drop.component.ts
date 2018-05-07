@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, NgZone, OnDestroy, Renderer } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
-import { TimerObservable } from 'rxjs/observable/TimerObservable';
+import { timer, Subscription } from 'rxjs';
 
 import { UploadFile } from './upload-file.model';
 import { UploadEvent } from './upload-event.model';
@@ -52,7 +51,7 @@ export class FileComponent implements OnDestroy {
       this.globalDisable = false;
     });
   }
-  
+
   public onDragOver(event: Event): void {
     if (!this.globalDisable && !this.disableIf) {
       if (!this.dragoverflag) {
@@ -72,7 +71,7 @@ export class FileComponent implements OnDestroy {
       this.preventAndStop(event);
     }
   }
-  
+
   dropFiles(event: any) {
     if (!this.globalDisable && !this.disableIf) {
       this.dragoverflag = false;
@@ -121,8 +120,8 @@ export class FileComponent implements OnDestroy {
 
       this.preventAndStop(event);
 
-      const timer = TimerObservable.create(200, 200);
-      this.subscription = timer.subscribe(t => {
+      const timerObservable = timer(200, 200);
+      this.subscription = timerObservable.subscribe(t => {
         if (this.stack.length === 0) {
           this.onFileDrop.emit(new UploadEvent(this.files));
           this.files = [];
@@ -178,7 +177,7 @@ export class FileComponent implements OnDestroy {
       readEntries();
     }
   }
-  
+
   private addToQueue(item: UploadFile) {
     this.files.push(item);
   }
@@ -208,5 +207,3 @@ export class FileComponent implements OnDestroy {
     this.globalEnd();
   }
 }
-
-

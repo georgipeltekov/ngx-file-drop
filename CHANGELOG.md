@@ -1,4 +1,7 @@
 ## Change Log
+### [4.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v3.0.2...v4.0.0) (2018-05-07)
+* Update to Angular 6.0.0
+
 ### [3.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v3.0.1...v3.0.2) (2018-04-29)
 * Allow drag events to be ignored that originate from document (introduced in 3.0.1) even if using custom styles
 
