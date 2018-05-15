@@ -14,8 +14,8 @@ branches:
 # We're also doing the install step here too, as we need
 # the results of previous builds to install future builds
 script:
-  - npm install
-    && npm install -g npm-cli-login
+  - ng new app 
+    && npm install ngx-file-drop
     && ng build 
 # Notifications
 notifications:
