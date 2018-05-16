@@ -1,4 +1,7 @@
 ## Change Log
+### [4.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.3...v4.0.4) (2018-05-16)
+* Clear unused dependencies
+
 ### [4.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.2...v4.0.3) (2018-05-15)
 * Loosen Angular-Dependencies
 

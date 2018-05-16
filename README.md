@@ -17,8 +17,6 @@ npm install ngx-file-drop --save
 
 ## Usage
 
-Simple usage example can be found in the sandbox folder
-
 
 ### Importing The 'ngx-file-drop' Module
 
