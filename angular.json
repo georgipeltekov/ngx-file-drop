@@ -12,15 +12,11 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/sandbox/index.html",
-            "main": "src/sandbox/main.ts",
+            "index": "src/lib/index.html",
+            "main": "src/lib/ngx-drop/index.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/sandbox/polyfills.ts",
             "assets": [
               
-            ],
-            "styles": [
-              "src/sandbox/styles.scss"
             ],
             "scripts": []
           },
@@ -37,8 +33,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/sandbox/environments/environment.ts",
-                  "with": "src/sandbox/environments/environment.prod.ts"
+                  "replace": "src/lib/environments/environment.ts",
+                  "with": "src/lib/environments/environment.prod.ts"
                 }
               ]
             }
