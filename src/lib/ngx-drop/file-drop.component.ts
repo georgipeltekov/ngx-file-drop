@@ -37,6 +37,8 @@ export class FileComponent implements OnDestroy {
   globalStart: Function;
   globalEnd: Function;
 
+  numOfActiveReadEntries = 0
+
   constructor(
     private zone: NgZone,
     private renderer: Renderer
@@ -122,10 +124,12 @@ export class FileComponent implements OnDestroy {
 
       const timerObservable = timer(200, 200);
       this.subscription = timerObservable.subscribe(t => {
-        if (this.stack.length === 0) {
+        if (this.files.length > 0) {
           this.onFileDrop.emit(new UploadEvent(this.files));
           this.files = [];
-          this.subscription.unsubscribe();
+          if (this.numOfActiveReadEntries === 0) {
+            this.subscription.unsubscribe();
+          }
         }
       });
     }
@@ -148,6 +152,7 @@ export class FileComponent implements OnDestroy {
       const thisObj = this;
 
       const readEntries = function () {
+        thisObj.numOfActiveReadEntries++
         dirReader.readEntries(function (res) {
           if (!res.length) {
             // add empty folders
@@ -171,6 +176,7 @@ export class FileComponent implements OnDestroy {
             entries = entries.concat(res);
             readEntries();
           }
+          thisObj.numOfActiveReadEntries--
         });
       };
 
