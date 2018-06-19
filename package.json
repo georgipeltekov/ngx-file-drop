@@ -1,6 +1,6 @@
 {
   "name": "ngx-file-drop",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

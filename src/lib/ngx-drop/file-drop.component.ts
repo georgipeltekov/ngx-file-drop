@@ -124,12 +124,9 @@ export class FileComponent implements OnDestroy {
 
       const timerObservable = timer(200, 200);
       this.subscription = timerObservable.subscribe(t => {
-        if (this.files.length > 0) {
+        if (this.files.length > 0 && this.numOfActiveReadEntries === 0) {
           this.onFileDrop.emit(new UploadEvent(this.files));
           this.files = [];
-          if (this.numOfActiveReadEntries === 0) {
-            this.subscription.unsubscribe();
-          }
         }
       });
     }
