@@ -1,4 +1,7 @@
 ## Change Log
+### [4.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.4...v4.0.5) (2018-06-19)
+* Fix for big, nested folder structure
+
 ### [4.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.3...v4.0.4) (2018-05-16)
 * Clear unused dependencies
 
