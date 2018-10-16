@@ -52,7 +52,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { UploadEvent, UploadFile } from 'ngx-file-drop';
+import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 @Component({
   selector: 'demo-root',
@@ -140,7 +140,7 @@ Name  | Description | Example |
 ------------- | ------------- | -------------
 (onFileDrop)  | On drop function called after the files are read | (onFileDrop)="dropped($event)"
 (onFileOver)  | On drop over function| (onFileOver)="fileOver($event)"
-(onFileLeave)  | On drop leave function| (onFileOver)="fileLeave($event)"
+(onFileLeave)  | On drop leave function| (onFileLeave)="fileLeave($event)"
 headertext  | Text to be displayed inside the drop box | headertext="Drop files here"
 customstyle  | Custom style class name to be used | customstyle="my-style"
 [disableIf]  | Conditionally disable the dropzone  | [disableIf]="condition"
