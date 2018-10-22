@@ -1,4 +1,7 @@
 ## Change Log
+### [5.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.6...v5.0.0) (2018-10-22)
+* Update to Angular 7.0.0
+
 ### [4.0.6](https://github.com/georgipeltekov/ngx-file-drop/compare/v4.0.5...v4.0.6) (2018-06-19)
 * Bug fixing
 
