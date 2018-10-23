@@ -15,6 +15,7 @@ branches:
 # the results of previous builds to install future builds
 script:
   - rm -f package-lock.json && yarn install
+    && yarn global add tsickle
     && yarn global add ngx-file-drop
     && yarn run packagr
 # Notifications

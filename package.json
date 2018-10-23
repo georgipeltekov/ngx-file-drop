@@ -37,7 +37,6 @@
     "@angular/common": "^7.0.0",
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
-    "tsickle": ">=0.27.3",
     "rxjs": "^6.3.3",
     "zone.js": "0.8.26"
   },
