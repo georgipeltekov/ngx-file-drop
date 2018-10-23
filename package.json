@@ -48,6 +48,7 @@
     "@angular/cli": "^7.0.0",
     "@angular/compiler-cli": "^7.0.0",
     "@types/node": "^8.0.53",
+    "tsickle": "^0.33.0",
     "ng-packagr": "^4.4.0",
     "ts-node": "~7.0.1",
     "tslint": "5.11.0",
