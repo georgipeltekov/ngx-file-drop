@@ -27,13 +27,13 @@ export interface FileSystemDirectoryEntry extends FileSystemEntry {
   isFile: false
   createReader(): FileSystemDirectoryReader
   getFile(
-    path?: USVString,
+    path?: string,
     options?: FileSystemFlags,
     successCallback?: (result: FileSystemFileEntry) => void,
     errorCallback?: (error: DOMError) => void,
   ): void
   getDirectory(
-    path?: USVString,
+    path?: string,
     options?: FileSystemFlags,
     successCallback?: (result: FileSystemDirectoryEntry) => void,
     errorCallback?: (error: DOMError) => void,
