@@ -1,4 +1,7 @@
 ## Change Log
+### [5.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.1...v5.0.2) (2019-01-23)
+* Add browse file button functionality
+
 ### [5.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.0...v5.0.1) (2019-01-18)
 * Support patch-level differences for zone.js
 * Update Readme

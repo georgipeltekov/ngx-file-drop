@@ -20,6 +20,8 @@ export class FileComponent implements OnDestroy {
   customstyle: string = null;
   @Input()
   disableIf: boolean = false;
+  @Input()
+  showBrowseBtn: boolean = false;
 
   @Output()
   public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
@@ -38,6 +40,9 @@ export class FileComponent implements OnDestroy {
   globalEnd: Function;
 
   numOfActiveReadEntries = 0
+
+  length;
+  items;
 
   constructor(
     private zone: NgZone,
@@ -75,29 +80,37 @@ export class FileComponent implements OnDestroy {
   }
 
   dropFiles(event: any) {
-    if (!this.globalDisable && !this.disableIf) {
-      this.dragoverflag = false;
-      event.dataTransfer.dropEffect = 'copy';
-      let length;
-      if (event.dataTransfer.items) {
-        length = event.dataTransfer.items.length;
-      } else {
-        length = event.dataTransfer.files.length;
-      }
+    this.dragoverflag = false;
+    event.dataTransfer.dropEffect = 'copy';
+    if (event.dataTransfer.items) {
+      this.length = event.dataTransfer.items.length;
+      this.items = event.dataTransfer.items;
+    } else {
+      this.length = event.dataTransfer.files.length;
+      this.items = event.dataTransfer.files;
+    }
+    this.checkFiles();
+  }
 
-      for (let i = 0; i < length; i++) {
+  uploadFiles(event: any) {
+    if (event.srcElement) { 
+      this.items = event.srcElement.files;
+      this.length = this.items.length;
+      this.checkFiles();
+    }
+  }
+
+  checkFiles() {
+    if (!this.globalDisable && !this.disableIf) {
+
+      for (let i = 0; i < this.length; i++) {
         let entry: FileSystemEntry;
-        if (event.dataTransfer.items) {
-          if (event.dataTransfer.items[i].webkitGetAsEntry) {
-            entry = event.dataTransfer.items[i].webkitGetAsEntry();
-          }
-        } else {
-          if (event.dataTransfer.files[i].webkitGetAsEntry) {
-            entry = event.dataTransfer.files[i].webkitGetAsEntry();
-          }
+        if(this.items[i].webkitGetAsEntry){
+          entry = this.items[i].webkitGetAsEntry();
         }
+         
         if (!entry) {
-          const file: File = event.dataTransfer.files[i];
+          const file: File = this.items[i];
           if (file) {
             const fakeFileEntry: FileSystemFileEntry = {
               name: file.name,

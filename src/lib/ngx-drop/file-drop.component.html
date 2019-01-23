@@ -4,5 +4,9 @@
     <div class="content">
         <ng-content></ng-content>
         {{headertext}}
+        <div *ngIf="showBrowseBtn">
+            <input type="file" id="selectedFile" (change)="uploadFiles($event)" multiple style="display: none;" /> 
+            <input type="button" class="btn btn-primary btn-xs" value="Custom Btn " onclick="document.getElementById('selectedFile').click();" />       
+        </div>        
     </div>
 </div>

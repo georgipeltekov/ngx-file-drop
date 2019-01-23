@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {FileComponent} from './file-drop.component';
 
 @NgModule({
@@ -6,7 +7,7 @@ import {FileComponent} from './file-drop.component';
     FileComponent,
   ],
   exports: [FileComponent],
-  imports: [],
+  imports: [CommonModule],
   providers: [],
   bootstrap: [FileComponent],
 })
