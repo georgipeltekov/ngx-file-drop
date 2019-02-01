@@ -5,7 +5,7 @@ import {
   EventEmitter,
   NgZone,
   OnDestroy,
-  Renderer,
+  Renderer2,
   ViewChild,
   ElementRef
 } from '@angular/core';
@@ -56,7 +56,7 @@ export class FileComponent implements OnDestroy {
 
   constructor(
     private zone: NgZone,
-    private renderer: Renderer
+    private renderer: Renderer2
   ) {
     this.globalStart = this.renderer.listen('document', 'dragstart', (evt: Event) => {
       this.globalDisable = true;
