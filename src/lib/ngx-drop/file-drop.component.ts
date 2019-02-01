@@ -89,18 +89,18 @@ export class FileComponent implements OnDestroy {
       this.length = event.dataTransfer.files.length;
       this.items = event.dataTransfer.files;
     }
-    this.checkFiles();
+    this.checkFiles(event);
   }
 
   uploadFiles(event: any) {
     if (event.srcElement) { 
       this.items = event.srcElement.files;
       this.length = this.items.length;
-      this.checkFiles();
+      this.checkFiles(event);
     }
   }
 
-  checkFiles() {
+  checkFiles(event: any) {
     if (!this.globalDisable && !this.disableIf) {
 
       for (let i = 0; i < this.length; i++) {

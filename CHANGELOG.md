@@ -1,4 +1,7 @@
 ## Change Log
+### [5.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.2...v5.0.3) (2019-02-01)
+* Fix bug introduced with previous version
+
 ### [5.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.1...v5.0.2) (2019-01-23)
 * Add browse file button functionality
 
