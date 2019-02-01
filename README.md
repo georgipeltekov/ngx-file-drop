@@ -147,6 +147,7 @@ headertext  | Text to be displayed inside the drop box | headertext="Drop files 
 customstyle  | Custom style class name to be used | customstyle="my-style"
 [disableIf]  | Conditionally disable the dropzone  | [disableIf]="condition"
 showBrowseBtn  | Whether browse file button should be shown  | showBrowseBtn="true"
+browseBtnLabel  | The label of the browse file button  | browseBtnLabel="Browse files"
 
 ## License
 
