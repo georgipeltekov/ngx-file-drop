@@ -7,14 +7,13 @@ import {
   OnDestroy,
   Renderer,
   ViewChild,
-  ViewContainerRef,
   ElementRef
 } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 
 import { UploadFile } from './upload-file.model';
 import { UploadEvent } from './upload-event.model';
-import { FileSystemFileEntry, FileSystemEntryMetadata, FileSystemEntry, FileSystemDirectoryEntry } from './dom.types';
+import { FileSystemFileEntry, FileSystemEntry, FileSystemDirectoryEntry } from './dom.types';
 
 @Component({
   selector: 'file-drop',
@@ -24,15 +23,15 @@ import { FileSystemFileEntry, FileSystemEntryMetadata, FileSystemEntry, FileSyst
 export class FileComponent implements OnDestroy {
 
   @Input()
-  headertext: string = '';
+  public headertext: string = '';
   @Input()
-  customstyle: string = null;
+  public customstyle: string = 'drop-zone';
   @Input()
-  disableIf: boolean = false;
+  public disableIf: boolean = false;
   @Input()
-  showBrowseBtn: boolean = false;
+  public showBrowseBtn: boolean = false;
   @Input()
-  browseBtnLabel: string = 'Browse files';
+  public browseBtnLabel: string = 'Browse files';
 
   @Output()
   public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
@@ -44,7 +43,7 @@ export class FileComponent implements OnDestroy {
   @ViewChild('fileSelector')
   public fileSelector: ElementRef;
 
-  stack = [];
+  stack: string[] = [];
   files: UploadFile[] = [];
   subscription: Subscription | null = null;
   dragoverflag: boolean = false;
@@ -59,13 +58,10 @@ export class FileComponent implements OnDestroy {
     private zone: NgZone,
     private renderer: Renderer
   ) {
-    if (!this.customstyle) {
-      this.customstyle = 'drop-zone';
-    }
-    this.globalStart = this.renderer.listen('document', 'dragstart', (evt) => {
+    this.globalStart = this.renderer.listen('document', 'dragstart', (evt: Event) => {
       this.globalDisable = true;
     });
-    this.globalEnd = this.renderer.listen('document', 'dragend', (evt) => {
+    this.globalEnd = this.renderer.listen('document', 'dragend', (evt: Event) => {
       this.globalDisable = false;
     });
   }
@@ -93,15 +89,17 @@ export class FileComponent implements OnDestroy {
   public dropFiles(event: DragEvent): void {
     if (!this.isDropzoneDisabled()) {
       this.dragoverflag = false;
-      event.dataTransfer.dropEffect = 'copy';
-      let items: FileList | DataTransferItemList;
-      if (event.dataTransfer.items) {
-        items = event.dataTransfer.items;
-      } else {
-        items = event.dataTransfer.files;
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'copy';
+        let items: FileList | DataTransferItemList;
+        if (event.dataTransfer.items) {
+          items = event.dataTransfer.items;
+        } else {
+          items = event.dataTransfer.files;
+        }
+        this.preventAndStop(event);
+        this.checkFiles(items);
       }
-      this.preventAndStop(event);
-      this.checkFiles(items);
     }
   }
 
@@ -113,8 +111,8 @@ export class FileComponent implements OnDestroy {
 
   public uploadFiles(event: Event): void {
     if (!this.isDropzoneDisabled()) {
-      if (event.srcElement) {
-        const items = (event.srcElement as HTMLInputElement).files;
+      if (event.target) {
+        const items = (event.target as HTMLInputElement).files || ([] as any);
         this.checkFiles(items);
       }
     }
@@ -122,8 +120,8 @@ export class FileComponent implements OnDestroy {
 
   private checkFiles(items: FileList | DataTransferItemList): void {
     for (let i = 0; i < items.length; i++) {
-      let entry: FileSystemEntry;
       const item = items[i];
+      let entry: FileSystemEntry | null = null;
       if (this.canGetAsEntry(item)) {
         entry = item.webkitGetAsEntry();
       }
@@ -163,18 +161,18 @@ export class FileComponent implements OnDestroy {
     });
   }
 
-  private traverseFileTree(item: FileSystemEntry, path: string) {
+  private traverseFileTree(item: FileSystemEntry, path: string): void {
     if (item.isFile) {
       const toUpload: UploadFile = new UploadFile(path, item);
       this.files.push(toUpload);
       this.zone.run(() => {
-        this.popToStack();
+        this.popFromStack();
       });
     } else {
       this.pushToStack(path);
       path = path + '/';
       const dirReader = (item as FileSystemDirectoryEntry).createReader();
-      let entries = [];
+      let entries: FileSystemEntry[] = [];
       const thisObj = this;
 
       const readEntries = function () {
@@ -195,7 +193,7 @@ export class FileComponent implements OnDestroy {
               }
             }
             thisObj.zone.run(() => {
-              thisObj.popToStack();
+              thisObj.popFromStack();
             });
           } else {
             // continue with the reading
@@ -218,28 +216,28 @@ export class FileComponent implements OnDestroy {
     return (this.globalDisable || this.disableIf);
   }
 
-  private addToQueue(item: UploadFile) {
+  private addToQueue(item: UploadFile): void {
     this.files.push(item);
   }
 
-  pushToStack(str) {
+  pushToStack(str: string): void {
     this.stack.push(str);
   }
 
-  popToStack() {
-    const value = this.stack.pop();
+  popFromStack(): string | undefined {
+    return this.stack.pop();
   }
 
-  private clearQueue() {
+  private clearQueue(): void {
     this.files = [];
   }
 
-  private preventAndStop(event) {
+  private preventAndStop(event: Event): void {
     event.stopPropagation();
     event.preventDefault();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
       this.subscription = null;
