@@ -41,7 +41,7 @@ export class FileComponent implements OnDestroy {
   @Output()
   public onFileLeave: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('fileSelector', {read: ViewContainerRef})
+  @ViewChild('fileSelector')
   public fileSelector: ElementRef;
 
   stack = [];
