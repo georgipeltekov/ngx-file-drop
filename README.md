@@ -148,6 +148,7 @@ customstyle  | Custom style class name to be used on the "drop-zone" area | cust
 customContentStyle  | Custom style class name to be used for the content area | customContentStyle="my-style"
 [disableIf]  | Conditionally disable the dropzone  | [disableIf]="condition"
 showBrowseBtn  | Whether browse file button should be shown  | showBrowseBtn="true"
+customBtnStyling | Custom style class/es to be used for the button | customBtnStyling="my-style"
 browseBtnLabel  | The label of the browse file button  | browseBtnLabel="Browse files"
 
 ## License

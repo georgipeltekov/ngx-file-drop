@@ -33,6 +33,8 @@ export class FileComponent implements OnDestroy {
   @Input()
   public showBrowseBtn: boolean = false;
   @Input()
+  public customBtnStyling: string = 'btn btn-primary btn-xs';
+  @Input()
   public browseBtnLabel: string = 'Browse files';
 
   @Output()
