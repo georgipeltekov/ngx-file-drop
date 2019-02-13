@@ -1,5 +1,8 @@
 ## Change Log
-### [5.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.2...v5.0.3) (2019-02-04)
+### [5.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.4...v5.0.5) (2019-02-13)
+* Add custom styling properties
+
+### [5.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.3...v5.0.4) (2019-02-04)
 * Add property for browse button label
 * Code optimization and refactoring
 
