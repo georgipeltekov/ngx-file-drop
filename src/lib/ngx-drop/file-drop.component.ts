@@ -27,6 +27,8 @@ export class FileComponent implements OnDestroy {
   @Input()
   public customstyle: string = 'drop-zone';
   @Input()
+  public customContentStyle: string = 'content';
+  @Input()
   public disableIf: boolean = false;
   @Input()
   public showBrowseBtn: boolean = false;

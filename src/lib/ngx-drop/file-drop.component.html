@@ -1,7 +1,7 @@
 <div [className]="customstyle" [class.over]="dragoverflag"
     (drop)="dropFiles($event)"
     (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
-    <div class="content">
+    <div [className]="customContentStyle">
         <ng-content></ng-content>
         {{headertext}}
         <div *ngIf="showBrowseBtn">
