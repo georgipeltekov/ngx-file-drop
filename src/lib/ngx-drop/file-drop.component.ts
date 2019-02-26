@@ -23,6 +23,8 @@ import { FileSystemFileEntry, FileSystemEntry, FileSystemDirectoryEntry } from '
 export class FileComponent implements OnDestroy {
 
   @Input()
+  public accept: string = '*'
+  @Input()
   public headertext: string = '';
   @Input()
   public customstyle: string = 'drop-zone';
