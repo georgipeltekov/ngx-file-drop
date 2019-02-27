@@ -5,7 +5,7 @@
         <ng-content></ng-content>
         {{headertext}}
         <div *ngIf="showBrowseBtn">
-            <input type="file" #fileSelector (change)="uploadFiles($event)" multiple style="display: none;" />
+            <input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" multiple style="display: none;" />
             <input type="button" [className]="customBtnStyling" value="{{browseBtnLabel}}" (click)="onBrowseButtonClick($event)" />
         </div>        
     </div>
