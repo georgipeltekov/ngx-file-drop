@@ -1,4 +1,7 @@
 ## Change Log
+### [5.0.6](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.5...v5.0.6) (2019-02-27)
+* Add accept field
+
 ### [5.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.4...v5.0.5) (2019-02-13)
 * Add custom styling properties
 
