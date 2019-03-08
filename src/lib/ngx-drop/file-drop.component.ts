@@ -135,7 +135,7 @@ export class FileComponent implements OnDestroy {
     }
   }
 
-  public onBrowseButtonClick(event: MouseEvent): void {
+  public onBrowseButtonClick(event?: MouseEvent): void {
     if (this.fileSelector && this.fileSelector.nativeElement) {
       (this.fileSelector.nativeElement as HTMLInputElement).click();
     }
