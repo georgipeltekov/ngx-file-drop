@@ -27,58 +27,23 @@ export class FileComponent implements OnDestroy {
 
   @Input()
   public dropZoneLabel: string = '';
-  /** @deprecated Will be removed in the next major version. Use `dropZoneLabel` instead. */
-  public get headertext(): string { return this.dropZoneLabel; }
-  /** @deprecated Will be removed in the next major version. Use `dropZoneLabel` instead. */
-  @Input()
-  public set headertext(value: string) {
-    this.dropZoneLabel = value;
-  }
 
   @Input()
-  public dropZoneClassName: string = 'ngx-file-drop__drop-zone drop-zone';
-  /** @deprecated Will be removed in the next major version. Use `dropZoneClassName` instead. */
-  public get customstyle(): string { return this.dropZoneClassName; }
-  /** @deprecated Will be removed in the next major version. Use `dropZoneClassName` instead. */
-  @Input()
-  public set customstyle(value: string) {
-    this.dropZoneClassName = value;
-  }
+  public dropZoneClassName: string = 'ngx-file-drop__drop-zone';
 
   @Input()
-  public contentClassName: string = 'ngx-file-drop__content content';
-  /** @deprecated Will be removed in the next major version. Use `contentClassName` instead. */
-  public get customContentStyle(): string { return this.contentClassName; }
-  /** @deprecated Will be removed in the next major version. Use `contentClassName` instead. */
-  @Input()
-  public set customContentStyle(value: string) {
-    this.contentClassName = value;
-  }
+  public contentClassName: string = 'ngx-file-drop__content';
 
   public get disabled(): boolean { return this._disabled; }
   @Input()
   public set disabled(value: boolean) {
     this._disabled = (value != null && `${value}` !== 'false');
   }
-  /** @deprecated Will be removed in the next major version. Use `disabled` instead. */
-  public get disableIf(): boolean { return this.disabled; }
-  /** @deprecated Will be removed in the next major version. Use `disabled` instead. */
-  @Input()
-  public set disableIf(value: boolean) {
-    this.disabled = value;
-  }
 
   @Input()
   public showBrowseBtn: boolean = false;
   @Input()
   public browseBtnClassName: string = 'btn btn-primary btn-xs ngx-file-drop__browse-btn';
-  /** @deprecated Will be removed in the next major version. Use `browseBtnClassName` instead. */
-  public get customBtnStyling(): string { return this.browseBtnClassName; }
-  /** @deprecated Will be removed in the next major version. Use `browseBtnClassName` instead. */
-  @Input()
-  public set customBtnStyling(value: string) {
-    this.browseBtnClassName = value;
-  }
 
   @Input()
   public browseBtnLabel: string = 'Browse files';

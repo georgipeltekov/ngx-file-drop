@@ -1,18 +1,15 @@
-.drop-zone {
-//.ngx-file-drop__drop-zone {
+.ngx-file-drop__drop-zone {
   height: 100px;
   margin: auto;
   border: 2px dotted #0782d0;
   border-radius: 30px;
 }
 
-.over {
-//.ngx-file-drop__drop-zone--over {
+.ngx-file-drop__drop-zone--over {
   background-color: rgba(147, 147, 147, 0.5);
 }
 
-.content {
-//.ngx-file-drop__content {
+.ngx-file-drop__content {
   display: flex;
   align-items: center;
   justify-content: center;
