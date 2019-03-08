@@ -178,7 +178,7 @@ export class FileComponent implements OnDestroy {
 
   /**
    * Processes the change event of the file input and adds the given files.
-   * @param {Event} event
+   * @param Event event
    */
   public uploadFiles(event: Event): void {
     if (!this.isDropzoneDisabled()) {
