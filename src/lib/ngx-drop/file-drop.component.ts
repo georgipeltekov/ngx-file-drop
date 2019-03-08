@@ -23,7 +23,7 @@ import { FileSystemFileEntry, FileSystemEntry, FileSystemDirectoryEntry } from '
 export class FileComponent implements OnDestroy {
 
   @Input()
-  public accept: string = '*'
+  public accept: string = '*';
   @Input()
   public headertext: string = '';
   @Input()
@@ -59,6 +59,9 @@ export class FileComponent implements OnDestroy {
   globalEnd: Function;
 
   numOfActiveReadEntries = 0;
+
+  private helperFormEl: HTMLFormElement | null = null;
+  private fileInputPlaceholderEl: HTMLDivElement | null = null;
 
   constructor(
     private zone: NgZone,
@@ -115,11 +118,16 @@ export class FileComponent implements OnDestroy {
     }
   }
 
+  /**
+   * Processes the change event of the file input and adds the given files.
+   * @param {Event} event
+   */
   public uploadFiles(event: Event): void {
     if (!this.isDropzoneDisabled()) {
       if (event.target) {
         const items = (event.target as HTMLInputElement).files || ([] as any);
         this.checkFiles(items);
+        this.resetFileInput();
       }
     }
   }
@@ -212,6 +220,54 @@ export class FileComponent implements OnDestroy {
 
       readEntries();
     }
+  }
+
+  /**
+   * Clears any added files from the file input element so the same file can subsequently be added multiple times.
+   */
+  private resetFileInput(): void {
+    if (this.fileSelector && this.fileSelector.nativeElement) {
+      const fileInputEl = this.fileSelector.nativeElement as HTMLInputElement;
+      const fileInputContainerEl = fileInputEl.parentElement;
+      const helperFormEl = this.getHelperFormElement();
+      const fileInputPlaceholderEl = this.getFileInputPlaceholderElement();
+
+      // Just a quick check so we do not mess up the DOM (will never happen though).
+      if (fileInputContainerEl !== helperFormEl) {
+        // Insert the form input placeholder in the DOM before the form input element.
+        this.renderer.insertBefore(fileInputContainerEl, fileInputPlaceholderEl, fileInputEl);
+        // Add the form input as child of the temporary form element, removing the form input from the DOM.
+        this.renderer.appendChild(helperFormEl, fileInputEl);
+        // Reset the form, thus clearing the input element of any files.
+        helperFormEl.reset();
+        // Add the file input back to the DOM in place of the file input placeholder element.
+        this.renderer.insertBefore(fileInputContainerEl, fileInputEl, fileInputPlaceholderEl);
+        // Remove the input placeholder from the DOM
+        this.renderer.removeChild(fileInputContainerEl, fileInputPlaceholderEl);
+      }
+    }
+  }
+
+  /**
+   * Get a cached HTML form element as a helper element to clear the file input element.
+   */
+  private getHelperFormElement(): HTMLFormElement {
+    if (!this.helperFormEl) {
+      this.helperFormEl = this.renderer.createElement('form') as HTMLFormElement;
+    }
+
+    return this.helperFormEl;
+  }
+
+  /**
+   * Get a cached HTML div element to be used as placeholder for the file input element when clearing said element.
+   */
+  private getFileInputPlaceholderElement(): HTMLDivElement {
+    if (!this.fileInputPlaceholderEl) {
+      this.fileInputPlaceholderEl = this.renderer.createElement('div') as HTMLDivElement;
+    }
+
+    return this.fileInputPlaceholderEl;
   }
 
   private canGetAsEntry(item: any): item is DataTransferItem {
