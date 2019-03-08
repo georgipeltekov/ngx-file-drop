@@ -36,7 +36,7 @@ export class FileComponent implements OnDestroy {
   }
 
   @Input()
-  public dropZoneClassName: string = 'ngx-file-drop__drop-zone';
+  public dropZoneClassName: string = 'ngx-file-drop__drop-zone drop-zone';
   /** @deprecated Will be removed in the next major version. Use `dropZoneClassName` instead. */
   public get customstyle(): string { return this.dropZoneClassName; }
   /** @deprecated Will be removed in the next major version. Use `dropZoneClassName` instead. */
@@ -46,7 +46,7 @@ export class FileComponent implements OnDestroy {
   }
 
   @Input()
-  public contentClassName: string = 'ngx-file-drop__content';
+  public contentClassName: string = 'ngx-file-drop__content content';
   /** @deprecated Will be removed in the next major version. Use `contentClassName` instead. */
   public get customContentStyle(): string { return this.contentClassName; }
   /** @deprecated Will be removed in the next major version. Use `contentClassName` instead. */

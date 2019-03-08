@@ -1,4 +1,5 @@
 <div [className]="dropZoneClassName"
+     [class.over]="isDraggingOverDropZone"
      [class.ngx-file-drop__drop-zone--over]="isDraggingOverDropZone"
      (drop)="dropFiles($event)"
      (dragover)="onDragOver($event)"
