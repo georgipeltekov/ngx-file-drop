@@ -1,20 +1,24 @@
-.drop-zone{
-  margin: auto;
+.ngx-file-drop__drop-zone {
   height: 100px;
+  margin: auto;
   border: 2px dotted #0782d0;
   border-radius: 30px;
 }
 
-.content{
-  color: #0782d0;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.ngx-file-drop__drop-zone--over {
+  background-color: rgba(147, 147, 147, 0.5);
 }
 
-.over{
-  background-color: rgba(147, 147, 147, 0.5);
+.ngx-file-drop__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  color: #0782d0;
+}
+
+.ngx-file-drop__drop-zone-label {
+  text-align: center;
 }
 
 .ngx-file-drop__file-input {
