@@ -1,12 +1,15 @@
-<div [className]="customstyle" [class.over]="dragoverflag"
-    (drop)="dropFiles($event)"
-    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
-    <div [className]="customContentStyle">
+<div [className]="dropZoneClassName"
+     [class.over]="isDraggingOverDropZone"
+     [class.ngx-file-drop__drop-zone--over]="isDraggingOverDropZone"
+     (drop)="dropFiles($event)"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)">
+    <div [className]="contentClassName">
         <ng-content></ng-content>
-        {{headertext}}
+        <div *ngIf="dropZoneLabel" class="ngx-file-drop__drop-zone-label">{{dropZoneLabel}}</div>
         <div *ngIf="showBrowseBtn">
-            <input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" multiple style="display: none;" />
-            <input type="button" [className]="customBtnStyling" value="{{browseBtnLabel}}" (click)="onBrowseButtonClick($event)" />
-        </div>        
+            <input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" multiple class="ngx-file-drop__file-input" />
+            <input type="button" [className]="browseBtnClassName" value="{{browseBtnLabel}}" (click)="onBrowseButtonClick($event)" />
+        </div>
     </div>
 </div>

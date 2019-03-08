@@ -115,9 +115,9 @@ export class AppComponent {
 ```
 ```HTML
 <div class="center">
-    <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
+    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
     (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-        <span>optional content (don't set headertext then)</span>
+        <span>optional content (don't set dropZoneLabel then)</span>
     </file-drop>
     <div class="upload-table">
         <table class="table">
@@ -143,12 +143,12 @@ Name  | Description | Example |
 (onFileDrop)  | On drop function called after the files are read | (onFileDrop)="dropped($event)"
 (onFileOver)  | On drop over function| (onFileOver)="fileOver($event)"
 (onFileLeave)  | On drop leave function| (onFileLeave)="fileLeave($event)"
-headertext  | Text to be displayed inside the drop box | headertext="Drop files here"
-customstyle  | Custom style class name to be used on the "drop-zone" area | customstyle="my-style"
-customContentStyle  | Custom style class name to be used for the content area | customContentStyle="my-style"
-[disableIf]  | Conditionally disable the dropzone  | [disableIf]="condition"
-showBrowseBtn  | Whether browse file button should be shown  | showBrowseBtn="true"
-customBtnStyling | Custom style class/es to be used for the button | customBtnStyling="my-style"
+dropZoneLabel  | Text to be displayed inside the drop box | dropZoneLabel="Drop files here"
+dropZoneClassName  | Custom style class name(s) to be used on the "drop-zone" area | dropZoneClassName="my-style"
+contentClassName  | Custom style class name(s) to be used for the content area | contentClassName="my-style"
+\[disabled\]  | Conditionally disable the dropzone  | \[disabled\]="condition"
+\[showBrowseBtn\]  | Whether browse file button should be shown  | \[showBrowseBtn\]="true"
+browseBtnClassName | Custom style class name(s) to be used for the button | browseBtnClassName="my-style"
 browseBtnLabel  | The label of the browse file button  | browseBtnLabel="Browse files"
 
 ## License
