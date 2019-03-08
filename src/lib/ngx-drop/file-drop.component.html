@@ -7,7 +7,7 @@
         <ng-content></ng-content>
         <div *ngIf="dropZoneLabel" class="ngx-file-drop__drop-zone-label">{{dropZoneLabel}}</div>
         <div *ngIf="showBrowseBtn">
-            <input type="file" #fileSelector (change)="uploadFiles($event)" multiple class="ngx-file-drop__file-input" />
+            <input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" multiple class="ngx-file-drop__file-input" />
             <input type="button" [className]="browseBtnClassName" value="{{browseBtnLabel}}" (click)="onBrowseButtonClick($event)" />
         </div>
     </div>
