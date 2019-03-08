@@ -1,4 +1,7 @@
 ## Change Log
+### [5.1.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.6...v5.1.0) (2019-03-08)
+* Code cleanup and consistent naming scheme
+
 ### [5.0.6](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.5...v5.0.6) (2019-02-27)
 * Add accept field
 
