@@ -1,4 +1,7 @@
 ## Change Log
+### [6.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.1.0...v6.0.0) (2019-03-11)
+* Code cleanup and consistent naming scheme, removing deprecated code
+
 ### [5.1.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.0.6...v5.1.0) (2019-03-08)
 * Code cleanup and consistent naming scheme
 
