@@ -151,6 +151,7 @@ contentClassName  | Custom style class name(s) to be used for the content area |
 \[showBrowseBtn\]  | Whether browse file button should be shown  | \[showBrowseBtn\]="true"
 browseBtnClassName | Custom style class name(s) to be used for the button | browseBtnClassName="my-style"
 browseBtnLabel  | The label of the browse file button  | browseBtnLabel="Browse files"
+multiple  | Whether multiple or single files are accepted  | multiple="true"
 
 ## License
 

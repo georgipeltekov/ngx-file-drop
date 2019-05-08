@@ -1,4 +1,7 @@
 ## Change Log
+### [6.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v6.0.0...v6.0.1) (2019-05-08)
+* Add support for multiple attribute changing
+
 ### [6.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v5.1.0...v6.0.0) (2019-03-11)
 * Code cleanup and consistent naming scheme, removing deprecated code
 
