@@ -26,6 +26,9 @@ export class FileComponent implements OnDestroy {
   public accept: string = '*';
 
   @Input()
+  public multiple: boolean = true;
+
+  @Input()
   public dropZoneLabel: string = '';
 
   @Input()
