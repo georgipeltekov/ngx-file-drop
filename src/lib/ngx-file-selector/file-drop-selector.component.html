@@ -1,0 +1,6 @@
+<input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" [multiple]="multiple"
+    class="ngx-file-drop__file-input" />
+<div *ngIf="showBrowseBtn">
+    <input type="button" [className]="browseBtnClassName" value="{{browseBtnLabel}}"
+        (click)="onBrowseButtonClick($event)" />
+</div>
