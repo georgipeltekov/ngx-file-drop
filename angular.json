@@ -13,7 +13,7 @@
           "options": {
             "outputPath": "dist",
             "index": "src/lib/index.html",
-            "main": "src/lib/ngx-drop/index.ts",
+            "main": "src/lib/ngx-file-drop/index.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               

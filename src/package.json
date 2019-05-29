@@ -1,0 +1,44 @@
+{
+  "$schema": "../node_modules/ng-packagr/package.schema.json",
+  "name": "ngx-file-drop",
+  "version": "7.0.0",
+  "description": "Angular ngx-file-drop - Simple desktop file and folder drag and drop",
+  "author": "Georgi Peltekov",
+  "license": "MIT",
+  "repository": "georgipeltekov/ngx-file-drop",
+  "engines": {
+    "node": ">= 12.0.0",
+    "npm": ">= 6.9.0"
+  },
+  "keywords": [
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4",
+    "angular5",
+    "angular 5",
+    "angular6",
+    "angular 6",
+    "angular7",
+    "angular 7",
+    "angular8",
+    "angular 8",
+    "file drop",
+    "folder drop",
+    "file upload",
+    "folder upload",
+    "typescript",
+    "drag and drop"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=8.0.0 <9.0.0",
+    "@angular/core": ">=8.0.0 <9.0.0"
+  },
+  "ngPackage": {
+    "lib": {
+      "flatModuleFile": "ngx-file-drop",
+      "entryFile": "index.ts"
+    },
+    "dest": "../dist"
+  }
+}

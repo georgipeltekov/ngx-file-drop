@@ -1,5 +1,31 @@
-dist/
-node_modules/
+# Visual Studio
+.vs/
 .vscode
-.editorconfig
-.vs
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Node Files
+/node_modules
+/bower_components
+npm-debug.log
+yarn-error.log
+
+# IDE configuration
+**/.idea/
+pre-commit-hook.sh
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Icon[\r]
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build files
+/dist/
