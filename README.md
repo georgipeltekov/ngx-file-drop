@@ -115,13 +115,13 @@ export class AppComponent {
 ```
 ```HTML
 <div class="center">
-    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
+    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
     (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
         <ng-template let-openFileSelector="openFileSelector">
           Optional custom content that replaces the the entire default content.
           <button type="button" (click)="openFileSelector()">Browse Files</button>
         </ng-template>
-    </file-drop>
+    </ngx-file-drop>
     <div class="upload-table">
         <table class="table">
             <thead>
