@@ -1,4 +1,7 @@
 ## Change Log
+### [8.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v6.0.1...v8.0.0) (2019-06-04)
+* Update to Angular 8
+
 ### [6.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v6.0.0...v6.0.1) (2019-05-08)
 * Add support for multiple attribute changing
 
