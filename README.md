@@ -2,9 +2,9 @@
 
 ## Overview
 
-An Angular 7 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
+An Angular 8 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
 
-For Angular 6, 5 and 4 support please use older versions.
+For Angular 7, 6, 5 and 4 support please use older versions.
 
 This library relies on HTML 5 File API thus IE and Safari are not supported
 
@@ -29,7 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { FileDropModule } from 'ngx-file-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { FileDropModule } from 'ngx-file-drop';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    FileDropModule
+    NgxFileDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -54,7 +54,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { NgxFileDropFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 @Component({
   selector: 'demo-root',
@@ -63,11 +63,11 @@ import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry 
 })
 export class AppComponent {
 
-  public files: UploadFile[] = [];
+  public files: NgxFileDropFile[] = [];
 
-  public dropped(event: UploadEvent) {
-    this.files = event.files;
-    for (const droppedFile of event.files) {
+  public dropped(files: NgxFileDropFile[]) {
+    this.files = files;
+    for (const droppedFile of files) {
 
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
@@ -115,10 +115,13 @@ export class AppComponent {
 ```
 ```HTML
 <div class="center">
-    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
+    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
     (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-        <span>optional content (don't set dropZoneLabel then)</span>
-    </file-drop>
+        <ng-template let-openFileSelector="openFileSelector">
+          Optional custom content that replaces the the entire default content.
+          <button type="button" (click)="openFileSelector()">Browse Files</button>
+        </ng-template>
+    </ngx-file-drop>
     <div class="upload-table">
         <table class="table">
             <thead>

@@ -5,9 +5,10 @@ import { FileSystemEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from '
  * Which one is it can be checked using {@link FileSystemEntry.isFile} or {@link FileSystemEntry.isDirectory}
  * properties of the given {@link FileSystemEntry}.
  */
-export class UploadFile {
+export class NgxFileDropEntry {
     constructor(
         public relativePath: string,
-        public fileEntry: FileSystemEntry) {
+        public fileEntry: FileSystemEntry
+    ) {
     }
 }

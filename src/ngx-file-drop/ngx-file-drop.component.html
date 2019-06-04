@@ -1,0 +1,21 @@
+<div [className]="dropZoneClassName"
+     [class.ngx-file-drop__drop-zone--over]="isDraggingOverDropZone"
+     (drop)="dropFiles($event)"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)">
+  <div [className]="contentClassName">
+    <input type="file" #fileSelector [accept]="accept" (change)="uploadFiles($event)" [multiple]="multiple" class="ngx-file-drop__file-input" />
+
+    <ng-template #defaultContentTemplate>
+      <div *ngIf="dropZoneLabel" class="ngx-file-drop__drop-zone-label">{{dropZoneLabel}}</div>
+      <div *ngIf="showBrowseBtn">
+        <input type="button" [className]="browseBtnClassName" value="{{browseBtnLabel}}" (click)="openFileSelector($event)" />
+      </div>
+    </ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="contentTemplate || defaultContentTemplate"
+      [ngTemplateOutletContext]="{ openFileSelector: openFileSelector }">
+    </ng-template>
+  </div>
+</div>

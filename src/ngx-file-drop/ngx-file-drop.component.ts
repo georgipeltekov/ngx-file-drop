@@ -1,26 +1,28 @@
 import {
   Component,
-  Input,
-  Output,
+  ContentChild,
+  ElementRef,
   EventEmitter,
+  Input,
   NgZone,
   OnDestroy,
+  Output,
   Renderer2,
-  ViewChild,
-  ElementRef
+  TemplateRef,
+  ViewChild
 } from '@angular/core';
-import { timer, Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
-import { UploadFile } from './upload-file.model';
-import { UploadEvent } from './upload-event.model';
-import { FileSystemFileEntry, FileSystemEntry, FileSystemDirectoryEntry } from './dom.types';
+import { NgxFileDropEntry } from './ngx-file-drop-entry';
+import { FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry } from './dom.types';
+import { NgxFileDropContentTemplateDirective } from './ngx-templates.directive';
 
 @Component({
-  selector: 'file-drop',
-  templateUrl: './file-drop.component.html',
-  styleUrls: ['./file-drop.component.scss'],
+  selector: 'ngx-file-drop',
+  templateUrl: './ngx-file-drop.component.html',
+  styleUrls: ['./ngx-file-drop.component.scss'],
 })
-export class FileComponent implements OnDestroy {
+export class NgxFileDropComponent implements OnDestroy {
 
   @Input()
   public accept: string = '*';
@@ -52,13 +54,16 @@ export class FileComponent implements OnDestroy {
   public browseBtnLabel: string = 'Browse files';
 
   @Output()
-  public onFileDrop: EventEmitter<UploadEvent> = new EventEmitter<UploadEvent>();
+  public onFileDrop: EventEmitter<NgxFileDropEntry[]> = new EventEmitter();
   @Output()
-  public onFileOver: EventEmitter<any> = new EventEmitter<any>();
+  public onFileOver: EventEmitter<any> = new EventEmitter();
   @Output()
-  public onFileLeave: EventEmitter<any> = new EventEmitter<any>();
+  public onFileLeave: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('fileSelector')
+  // custom templates
+  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef, static: false }) contentTemplate: TemplateRef<any>;
+
+  @ViewChild('fileSelector', { static: true })
   public fileSelector: ElementRef;
 
   public isDraggingOverDropZone: boolean = false;
@@ -67,7 +72,7 @@ export class FileComponent implements OnDestroy {
   private globalDragStartListener: () => void;
   private globalDragEndListener: () => void;
 
-  private files: UploadFile[] = [];
+  private files: NgxFileDropEntry[] = [];
   private numOfActiveReadEntries: number = 0;
 
   private helperFormEl: HTMLFormElement | null = null;
@@ -138,11 +143,11 @@ export class FileComponent implements OnDestroy {
     }
   }
 
-  public onBrowseButtonClick(event?: MouseEvent): void {
+  public openFileSelector = (event?: MouseEvent): void => {
     if (this.fileSelector && this.fileSelector.nativeElement) {
       (this.fileSelector.nativeElement as HTMLInputElement).click();
     }
-  }
+  };
 
   /**
    * Processes the change event of the file input and adds the given files.
@@ -176,13 +181,13 @@ export class FileComponent implements OnDestroy {
               callback(item as File);
             },
           };
-          const toUpload: UploadFile = new UploadFile(fakeFileEntry.name, fakeFileEntry);
+          const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
           this.addToQueue(toUpload);
         }
 
       } else {
         if (entry.isFile) {
-          const toUpload: UploadFile = new UploadFile(entry.name, entry);
+          const toUpload: NgxFileDropEntry = new NgxFileDropEntry(entry.name, entry);
           this.addToQueue(toUpload);
 
         } else if (entry.isDirectory) {
@@ -197,15 +202,16 @@ export class FileComponent implements OnDestroy {
     this.dropEventTimerSubscription = timer(200, 200)
       .subscribe(() => {
         if (this.files.length > 0 && this.numOfActiveReadEntries === 0) {
-          this.onFileDrop.emit(new UploadEvent(this.files));
+          const files = this.files;
           this.files = [];
+          this.onFileDrop.emit(files);
         }
       });
   }
 
   private traverseFileTree(item: FileSystemEntry, path: string): void {
     if (item.isFile) {
-      const toUpload: UploadFile = new UploadFile(path, item);
+      const toUpload: NgxFileDropEntry = new NgxFileDropEntry(path, item);
       this.files.push(toUpload);
 
     } else {
@@ -219,7 +225,7 @@ export class FileComponent implements OnDestroy {
           if (!result.length) {
             // add empty folders
             if (entries.length === 0) {
-              const toUpload: UploadFile = new UploadFile(path, item);
+              const toUpload: NgxFileDropEntry = new NgxFileDropEntry(path, item);
               this.zone.run(() => {
                 this.addToQueue(toUpload);
               });
@@ -302,7 +308,7 @@ export class FileComponent implements OnDestroy {
     return (this.globalDraggingInProgress || this.disabled);
   }
 
-  private addToQueue(item: UploadFile): void {
+  private addToQueue(item: NgxFileDropEntry): void {
     this.files.push(item);
   }
 
