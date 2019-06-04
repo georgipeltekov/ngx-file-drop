@@ -19,7 +19,7 @@ branches:
 script:
   - rm -f package-lock.json && npm install
     && npm install -g ngx-file-drop
-    && npm run packagr
+    && npm run build
 # Notifications
 notifications:
   email:
