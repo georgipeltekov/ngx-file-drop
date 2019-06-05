@@ -54,7 +54,7 @@ export class AppModule { }
 
 ```TypeScript
 import { Component } from '@angular/core';
-import { NgxFileDropFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 @Component({
   selector: 'demo-root',
@@ -63,9 +63,9 @@ import { NgxFileDropFile, FileSystemFileEntry, FileSystemDirectoryEntry } from '
 })
 export class AppComponent {
 
-  public files: NgxFileDropFile[] = [];
+  public files: NgxFileDropEntry[] = [];
 
-  public dropped(files: NgxFileDropFile[]) {
+  public dropped(files: NgxFileDropEntry[]) {
     this.files = files;
     for (const droppedFile of files) {
 
