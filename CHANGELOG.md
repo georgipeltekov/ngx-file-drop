@@ -1,5 +1,5 @@
 ## Change Log
-### [8.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.0...v8.0.1) (2019-06-05)
+### [8.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.0...v8.0.2) (2019-06-05)
 * Update README
 
 ### [8.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v6.0.1...v8.0.0) (2019-06-04)
