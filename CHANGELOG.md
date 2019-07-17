@@ -1,4 +1,7 @@
 ## Change Log
+### [8.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.3...v8.0.4) (2019-07-17)
+* Lowering node version requirement to LTS version 10 ( again)
+
 ### [8.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.2...v8.0.3) (2019-06-28)
 * Lowering node version requirement to LTS version 10
 

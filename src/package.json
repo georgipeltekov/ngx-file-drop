@@ -1,13 +1,13 @@
 {
   "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-file-drop",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "description": "Angular ngx-file-drop - Simple desktop file and folder drag and drop",
   "author": "Georgi Peltekov",
   "license": "MIT",
   "repository": "georgipeltekov/ngx-file-drop",
   "engines": {
-    "node": ">= 12.0.0",
+    "node": ">= 10.0.0",
     "npm": ">= 6.9.0"
   },
   "keywords": [
