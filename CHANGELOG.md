@@ -1,4 +1,7 @@
 ## Change Log
+### [8.0.6](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.5...v8.0.6) (2019-08-06)
+* Add readme to the npm package
+
 ### [8.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.4...v8.0.5) (2019-08-06)
 * Add directory parameter
 
