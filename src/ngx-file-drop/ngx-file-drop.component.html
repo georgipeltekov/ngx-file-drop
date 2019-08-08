@@ -4,22 +4,6 @@
      (dragover)="onDragOver($event)"
      (dragleave)="onDragLeave($event)">
   <div [className]="contentClassName">
-    <span *ngIf="directory">
-      <input 
-        type="file" 
-        #fileSelector 
-        [accept]="accept" 
-        directory
-        webkitdirectory
-        mozdirectory
-        msdirectory
-        odirectory
-        [multiple]="multiple"
-        (change)="uploadFiles($event)" 
-        class="ngx-file-drop__file-input" 
-      />
-    </span>
-    <span *ngIf="!directory">
       <input 
         type="file" 
         #fileSelector 
@@ -28,7 +12,6 @@
         (change)="uploadFiles($event)" 
         class="ngx-file-drop__file-input" 
       />
-    </span>
 
     <ng-template #defaultContentTemplate>
       <div *ngIf="dropZoneLabel" class="ngx-file-drop__drop-zone-label">{{dropZoneLabel}}</div>

@@ -28,9 +28,6 @@ export class NgxFileDropComponent implements OnDestroy {
   public accept: string = '*';
 
   @Input()
-  public directory: boolean = false;
-
-  @Input()
   public multiple: boolean = true;
 
   @Input()
