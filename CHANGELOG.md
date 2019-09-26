@@ -1,4 +1,7 @@
 ## Change Log
+### [8.0.8](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.7...v8.0.8) (2019-09-26)
+* Add directory parameter
+
 ### [8.0.7](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.6...v8.0.7) (2019-08-08)
 * Revert previous version due to regression
 
