@@ -1,5 +1,14 @@
 ## Change Log
-### [8.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.3...v8.0.4) (2019-07-17)
+### [8.0.7](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.6...v8.0.7) (2019-08-08)
+* Revert previous version due to regression
+
+### [8.0.6](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.5...v8.0.6) (2019-08-06)
+* Add readme to the npm package
+
+### [8.0.5](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.4...v8.0.5) (2019-08-06)
+* Add directory parameter
+
+### [8.0.4](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.3...v8.0.4) (2019-07-17)
 * Lowering node version requirement to LTS version 10 ( again)
 
 ### [8.0.3](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.2...v8.0.3) (2019-06-28)
