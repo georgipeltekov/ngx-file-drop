@@ -146,7 +146,7 @@ Name  | Description | Example |
 (onFileDrop)  | On drop function called after the files are read | (onFileDrop)="dropped($event)"
 (onFileOver)  | On drop over function| (onFileOver)="fileOver($event)"
 (onFileLeave)  | On drop leave function| (onFileLeave)="fileLeave($event)"
-accept  | String of accepted formats | accept="png"
+accept  | String of accepted formats | accept=".png"
 directory  | Whether directories are accepted | directory="true"
 dropZoneLabel  | Text to be displayed inside the drop box | dropZoneLabel="Drop files here"
 dropZoneClassName  | Custom style class name(s) to be used on the "drop-zone" area | dropZoneClassName="my-style"
