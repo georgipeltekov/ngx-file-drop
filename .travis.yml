@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "node"
 
-#Disalbe google analytics promp
+#Disable google analytics promp
 before_install:
   - export NG_CLI_ANALYTICS=ci
 
@@ -12,14 +12,12 @@ branches:
   only:
     - master
 
-# Build both library and samples
-# We want any of these steps to fail the entire build
-# We're also doing the install step here too, as we need
-# the results of previous builds to install future builds
-script:
-  - rm -f package-lock.json && npm install
-    && npm install -g ngx-file-drop
-    && npm run build
+install: npm ci
+
+before_script: npm run lint
+
+script: npm run build
+
 # Notifications
 notifications:
   email:

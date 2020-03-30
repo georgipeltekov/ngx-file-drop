@@ -64,7 +64,7 @@ export class NgxFileDropComponent implements OnDestroy {
   public onFileLeave: EventEmitter<any> = new EventEmitter();
 
   // custom templates
-  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef, static: false }) contentTemplate: TemplateRef<any>;
+  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef }) contentTemplate: TemplateRef<any>;
 
   @ViewChild('fileSelector', { static: true })
   public fileSelector: ElementRef;
