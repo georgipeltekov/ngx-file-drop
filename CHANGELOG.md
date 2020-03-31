@@ -1,4 +1,7 @@
 ## Change Log
+### [9.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.8...v9.0.0) (2020-03-31)
+* Update to Angular 9
+
 ### [8.0.8](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.7...v8.0.8) (2019-09-26)
 * Add directory parameter
 
