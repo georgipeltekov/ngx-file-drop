@@ -1,4 +1,7 @@
 ## Change Log
+### [9.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v9.0.0...v9.0.1) (2020-04-15)
+* Add dragenter option
+
 ### [9.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v8.0.8...v9.0.0) (2020-03-31)
 * Update to Angular 9
 

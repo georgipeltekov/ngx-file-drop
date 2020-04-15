@@ -2,6 +2,7 @@
      [class.ngx-file-drop__drop-zone--over]="isDraggingOverDropZone"
      (drop)="dropFiles($event)"
      (dragover)="onDragOver($event)"
+     (dragenter)="onDragEnter($event)"
      (dragleave)="onDragLeave($event)">
   <div [className]="contentClassName">
     <input 

@@ -40,6 +40,9 @@ export class NgxFileDropComponent implements OnDestroy {
   public dropZoneClassName: string = 'ngx-file-drop__drop-zone';
 
   @Input()
+  public useDragEnter: boolean = false;
+
+  @Input()
   public contentClassName: string = 'ngx-file-drop__content';
 
   public get disabled(): boolean { return this._disabled; }
@@ -110,7 +113,19 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public onDragOver(event: Event): void {
-    if (!this.isDropzoneDisabled()) {
+    if(this.useDragEnter){
+      this.preventAndStop(event);
+    } else if (!this.isDropzoneDisabled() && !this.useDragEnter) {
+      if (!this.isDraggingOverDropZone) {
+        this.isDraggingOverDropZone = true;
+        this.onFileOver.emit(event);
+      }
+      this.preventAndStop(event);
+    }
+  }
+
+  public onDragEnter(event: Event): void {
+    if (!this.isDropzoneDisabled() && this.useDragEnter) {
       if (!this.isDraggingOverDropZone) {
         this.isDraggingOverDropZone = true;
         this.onFileOver.emit(event);
