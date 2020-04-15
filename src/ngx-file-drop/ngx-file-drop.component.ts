@@ -113,7 +113,7 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public onDragOver(event: Event): void {
-    if(this.useDragEnter){
+    if (this.useDragEnter) {
       this.preventAndStop(event);
     } else if (!this.isDropzoneDisabled() && !this.useDragEnter) {
       if (!this.isDraggingOverDropZone) {
