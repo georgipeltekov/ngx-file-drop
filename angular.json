@@ -37,7 +37,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["./src/tsconfig.json"],
+            "tsConfig": [
+              "./src/tsconfig.json"
+            ],
             "exclude": []
           }
         }
@@ -53,5 +55,8 @@
     "@schematics/angular:directive": {
       "prefix": "ngx"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -15,7 +15,4 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2016", "dom"]
   },
-  "angularCompilerOptions": {
-    "enableIvy": false
-  }
 }
