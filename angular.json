@@ -4,9 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "ngx-file-drop": {
+      "projectType": "library",
       "root": "",
       "sourceRoot": "src",
-      "projectType": "library",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -16,21 +16,7 @@
           },
           "configurations": {
             "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/lib/environments/environment.ts",
-                  "with": "src/lib/environments/environment.prod.ts"
-                }
-              ]
+              "tsConfig": "src/tsconfig.json"
             }
           }
         },
@@ -38,25 +24,26 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "./src/tsconfig.json"
+              "src/tsconfig.json"
             ],
-            "exclude": []
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
-    }
+    }},
+  "cli": {
+    "analytics": false
   },
   "defaultProject": "ngx-file-drop",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ngx",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "ngx"
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

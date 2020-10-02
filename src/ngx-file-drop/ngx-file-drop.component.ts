@@ -45,14 +45,9 @@ export class NgxFileDropComponent implements OnDestroy {
   @Input()
   public contentClassName: string = 'ngx-file-drop__content';
 
-  public get disabled(): boolean { return this._disabled; }
-  @Input()
-  public set disabled(value: boolean) {
-    this._disabled = (value != null && `${value}` !== 'false');
-  }
-
   @Input()
   public showBrowseBtn: boolean = false;
+
   @Input()
   public browseBtnClassName: string = 'btn btn-primary btn-xs ngx-file-drop__browse-btn';
 
@@ -61,8 +56,10 @@ export class NgxFileDropComponent implements OnDestroy {
 
   @Output()
   public onFileDrop: EventEmitter<NgxFileDropEntry[]> = new EventEmitter();
+
   @Output()
   public onFileOver: EventEmitter<any> = new EventEmitter();
+
   @Output()
   public onFileLeave: EventEmitter<any> = new EventEmitter();
 
@@ -75,8 +72,8 @@ export class NgxFileDropComponent implements OnDestroy {
   public isDraggingOverDropZone: boolean = false;
 
   private globalDraggingInProgress: boolean = false;
-  private globalDragStartListener: () => void;
-  private globalDragEndListener: () => void;
+  private readonly globalDragStartListener: () => void;
+  private readonly globalDragEndListener: () => void;
 
   private files: NgxFileDropEntry[] = [];
   private numOfActiveReadEntries: number = 0;
@@ -87,6 +84,13 @@ export class NgxFileDropComponent implements OnDestroy {
   private dropEventTimerSubscription: Subscription | null = null;
 
   private _disabled: boolean = false;
+
+  public get disabled(): boolean { return this._disabled; }
+
+  @Input()
+  public set disabled(value: boolean) {
+    this._disabled = (value != null && `${value}` !== 'false');
+  }
 
   constructor(
     private zone: NgZone,
