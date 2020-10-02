@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-file-drop",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "description": "Angular ngx-file-drop - Simple desktop file and folder drag and drop",
   "author": "Georgi Peltekov",
   "license": "MIT",
@@ -33,8 +33,8 @@
     "drag and drop"
   ],
   "peerDependencies": {
-    "@angular/common": ">=9.0.0 <10.0.0",
-    "@angular/core": ">=9.0.0 <10.0.0"
+    "@angular/common": ">=9.0.0",
+    "@angular/core": ">=9.0.0"
   },
   "ngPackage": {
     "lib": {
