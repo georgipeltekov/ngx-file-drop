@@ -1,4 +1,7 @@
 ## Change Log
+### [10.1.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v10.0.0...v10.1.0) (2020-11-11)
+* Compile with View Engine
+
 ### [10.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v9.0.1...v10.0.0) (2020-10-02)
 * Update to Angular 10
 
