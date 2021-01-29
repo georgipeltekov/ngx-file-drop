@@ -2,7 +2,7 @@
 
 ## Overview
 
-An Angular 9 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
+An Angular 10 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
 
 For previous Angular support please use older versions.
 
