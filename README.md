@@ -2,7 +2,7 @@
 
 ## Overview
 
-An Angular 10 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
+An Angular 11 module for simple desktop file and folder drag and drop. This library does not need rxjs-compat.
 
 For previous Angular support please use older versions.
 
@@ -167,7 +167,7 @@ useDragEnter  | Use dragenter event instead of dragover  | useDragEnter="true"
 [CHANGELOG](/CHANGELOG.md)
 
 ## Donate Crypto
-* Ethereum: 0x22d557543ba1f8ac1dadc4eec5ea1b9ae03e0da8
-* Ripple: rJeJTHNyDkqurBBAAUzo4xhJyQo9mhTCJH
+* Bitcoin: 18yJcRSyY7J9K7kHrkNQ2JspLfSgLKWUnh
+* Ethereum: 0xdF1E80c91599CA6d4a8745888e658f45B86b0FEd
 
 
