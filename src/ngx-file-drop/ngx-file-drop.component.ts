@@ -116,15 +116,19 @@ export class NgxFileDropComponent implements OnDestroy {
     this.fileInputPlaceholderEl = null;
   }
 
-  public onDragOver(event: Event): void {
+  public onDragOver(event: DragEvent): void {
     if (this.useDragEnter) {
       this.preventAndStop(event);
-    } else if (!this.isDropzoneDisabled() && !this.useDragEnter) {
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'copy';
+      }
+    } else if (!this.isDropzoneDisabled() && !this.useDragEnter && event.dataTransfer) {
       if (!this.isDraggingOverDropZone) {
         this.isDraggingOverDropZone = true;
         this.onFileOver.emit(event);
       }
       this.preventAndStop(event);
+      event.dataTransfer.dropEffect = 'copy';
     }
   }
 
@@ -152,7 +156,6 @@ export class NgxFileDropComponent implements OnDestroy {
     if (!this.isDropzoneDisabled()) {
       this.isDraggingOverDropZone = false;
       if (event.dataTransfer) {
-        event.dataTransfer.dropEffect = 'copy';
         let items: FileList | DataTransferItemList;
         if (event.dataTransfer.items) {
           items = event.dataTransfer.items;
