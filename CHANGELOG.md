@@ -1,4 +1,7 @@
 ## Change Log
+### [11.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v11.0.0...v11.0.1) (2021-02-16)
+* Fix bug with dropEffect not taking into consideration and Outlook problems
+
 ### [11.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v10.1.1...v11.0.0) (2021-01-29)
 * Update to Angular 11
 
