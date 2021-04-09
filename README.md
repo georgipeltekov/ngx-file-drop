@@ -6,7 +6,7 @@ An Angular 11 module for simple desktop file and folder drag and drop. This libr
 
 For previous Angular support please use older versions.
 
-This library relies on HTML 5 File API thus IE and Safari are not supported
+This library relies on HTML 5 File API thus IE is not supported
 
 ## DEMO
 You can check the [DEMO](https://georgipeltekov.github.io/) of the library 
