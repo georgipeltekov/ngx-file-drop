@@ -202,9 +202,7 @@ export class NgxFileDropComponent implements OnDestroy {
             name: (item as File).name,
             isDirectory: false,
             isFile: true,
-            file: (callback: (filea: File) => void): void => {
-              callback(item as File);
-            },
+            file: <T>(callback: (filea: File) => T) => callback(item as File),
           };
           const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
           this.addToQueue(toUpload);

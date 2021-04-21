@@ -43,5 +43,5 @@ export interface FileSystemDirectoryEntry extends FileSystemEntry {
 export interface FileSystemFileEntry extends FileSystemEntry {
   isDirectory: false
   isFile: true
-  file(callback: (file: File) => void): void
+  file<T>(callback: (file: File) => T): T
 }
