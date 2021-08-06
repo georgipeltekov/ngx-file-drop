@@ -148,13 +148,13 @@ export class NgxFileDropComponent implements OnDestroy {
     }
   }
 
-  public dropFiles(event: DragEvent): void {
+  public async dropFiles(event: DragEvent): Promise<void> {
     if (!this.isDropzoneDisabled()) {
       this.isDraggingOverDropZone = false;
       if (event.dataTransfer) {
         const items = event.dataTransfer.files;
         this.preventAndStop(event);
-        this.checkFiles(items);
+        await this.checkFiles(items);
       }
     }
   }
@@ -169,23 +169,33 @@ export class NgxFileDropComponent implements OnDestroy {
    * Processes the change event of the file input and adds the given files.
    * @param Event event
    */
-  public uploadFiles(event: Event): void {
+  public async uploadFiles(event: Event): Promise<void> {
     if (!this.isDropzoneDisabled()) {
       if (event.target) {
         const items = (event.target as HTMLInputElement).files || ([] as any);
-        this.checkFiles(items);
+        await this.checkFiles(items);
         this.resetFileInput();
       }
     }
   }
 
-  private checkFiles(items: FileList | DataTransferItemList): void {
+  private async checkFiles(items: FileList): Promise<void> {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
+      const name = (item as File).name;
+      let isDirectory = false;
+      let isFile = false;
+      try {
+        await item.slice(0, 1).arrayBuffer();
+        isFile = true;
+      } catch {
+        isDirectory = true;
+      }
+
       const fakeFileEntry: FileSystemFileEntry = {
-        name: (item as File).name,
-        isDirectory: false,
-        isFile: true,
+        name,
+        isDirectory,
+        isFile,
         file: <T>(callback: (filea: File) => T) => callback(item as File),
       };
       const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
