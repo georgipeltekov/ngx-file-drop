@@ -1,5 +1,5 @@
 {
-  "repository": "georgipeltekov/ngx-file-drop",
+  "repository": "https://github.com/BugSplat-Git/ngx-file-drop",
   "engines": {
     "node": ">= 10.0.0",
     "npm": ">= 6.9.0"
