@@ -3,18 +3,15 @@ import {
   ContentChild,
   ElementRef,
   EventEmitter,
-  Input,
-  NgZone,
-  OnDestroy,
+  Input, OnDestroy,
   Output,
   Renderer2,
   TemplateRef,
   ViewChild
 } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
-
+import { FileSystemFileEntry } from './dom.types';
 import { NgxFileDropEntry } from './ngx-file-drop-entry';
-import { FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry } from './dom.types';
 import { NgxFileDropContentTemplateDirective } from './ngx-templates.directive';
 
 @Component({
@@ -93,7 +90,6 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   constructor(
-    private zone: NgZone,
     private renderer: Renderer2
   ) {
     this.globalDragStartListener = this.renderer.listen('document', 'dragstart', (evt: Event) => {
@@ -156,12 +152,7 @@ export class NgxFileDropComponent implements OnDestroy {
     if (!this.isDropzoneDisabled()) {
       this.isDraggingOverDropZone = false;
       if (event.dataTransfer) {
-        let items: FileList | DataTransferItemList;
-        if (event.dataTransfer.items) {
-          items = event.dataTransfer.items;
-        } else {
-          items = event.dataTransfer.files;
-        }
+        const items = event.dataTransfer.files;
         this.preventAndStop(event);
         this.checkFiles(items);
       }
@@ -191,32 +182,14 @@ export class NgxFileDropComponent implements OnDestroy {
   private checkFiles(items: FileList | DataTransferItemList): void {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      let entry: FileSystemEntry | null = null;
-      if (this.canGetAsEntry(item)) {
-        entry = item.webkitGetAsEntry();
-      }
-
-      if (!entry) {
-        if (item) {
-          const fakeFileEntry: FileSystemFileEntry = {
-            name: (item as File).name,
-            isDirectory: false,
-            isFile: true,
-            file: <T>(callback: (filea: File) => T) => callback(item as File),
-          };
-          const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
-          this.addToQueue(toUpload);
-        }
-
-      } else {
-        if (entry.isFile) {
-          const toUpload: NgxFileDropEntry = new NgxFileDropEntry(entry.name, entry);
-          this.addToQueue(toUpload);
-
-        } else if (entry.isDirectory) {
-          this.traverseFileTree(entry, entry.name);
-        }
-      }
+      const fakeFileEntry: FileSystemFileEntry = {
+        name: (item as File).name,
+        isDirectory: false,
+        isFile: true,
+        file: <T>(callback: (filea: File) => T) => callback(item as File),
+      };
+      const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
+      this.addToQueue(toUpload);
     }
 
     if (this.dropEventTimerSubscription) {
@@ -230,49 +203,6 @@ export class NgxFileDropComponent implements OnDestroy {
           this.onFileDrop.emit(files);
         }
       });
-  }
-
-  private traverseFileTree(item: FileSystemEntry, path: string): void {
-    if (item.isFile) {
-      const toUpload: NgxFileDropEntry = new NgxFileDropEntry(path, item);
-      this.files.push(toUpload);
-
-    } else {
-      path = path + '/';
-      const dirReader = (item as FileSystemDirectoryEntry).createReader();
-      let entries: FileSystemEntry[] = [];
-
-      const readEntries = () => {
-        this.numOfActiveReadEntries++;
-        dirReader.readEntries((result) => {
-          if (!result.length) {
-            // add empty folders
-            if (entries.length === 0) {
-              const toUpload: NgxFileDropEntry = new NgxFileDropEntry(path, item);
-              this.zone.run(() => {
-                this.addToQueue(toUpload);
-              });
-
-            } else {
-              for (let i = 0; i < entries.length; i++) {
-                this.zone.run(() => {
-                  this.traverseFileTree(entries[i], path + entries[i].name);
-                });
-              }
-            }
-
-          } else {
-            // continue with the reading
-            entries = entries.concat(result);
-            readEntries();
-          }
-
-          this.numOfActiveReadEntries--;
-        });
-      };
-
-      readEntries();
-    }
   }
 
   /**
@@ -321,10 +251,6 @@ export class NgxFileDropComponent implements OnDestroy {
     }
 
     return this.fileInputPlaceholderEl;
-  }
-
-  private canGetAsEntry(item: any): item is DataTransferItem {
-    return !!item.webkitGetAsEntry;
   }
 
   private isDropzoneDisabled(): boolean {
