@@ -344,7 +344,7 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   private isAcceptedExtension(acceptedExtensions: string, fileName: string) {
-    if (acceptedExtensions === "*") {
+    if (acceptedExtensions === '*') {
       return true;
     }
 
