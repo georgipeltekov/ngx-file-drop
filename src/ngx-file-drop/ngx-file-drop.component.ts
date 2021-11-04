@@ -235,7 +235,7 @@ export class NgxFileDropComponent implements OnDestroy {
   private traverseFileTree(item: FileSystemEntry, path: string): void {
     if (item.isFile) {
       const toUpload: NgxFileDropEntry = new NgxFileDropEntry(path, item);
-      this.addToQueue(toUpload);
+      this.files.push(toUpload);
 
     } else {
       path = path + '/';
@@ -332,26 +332,7 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   private addToQueue(item: NgxFileDropEntry): void {
-    const isAcceptedExt = this.isAcceptedExtension(this.accept, item.fileEntry.name);
-    if (!isAcceptedExt) return;
-
     this.files.push(item);
-  }
-
-  private getFileExtension(fileName: string) {
-    const extension = fileName.split('.').slice(-1)[0];
-    return `.${extension}`;
-  }
-
-  private isAcceptedExtension(acceptedExtensions: string, fileName: string) {
-    if (acceptedExtensions === '*') {
-      return true;
-    }
-
-    const fileExtension = this.getFileExtension(fileName);
-
-    const acceptedExtList = acceptedExtensions.split(',');
-    return acceptedExtList.includes(fileExtension);
   }
 
   private preventAndStop(event: Event): void {

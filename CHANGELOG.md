@@ -1,4 +1,8 @@
 ## Change Log
+### [11.3.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v11.2.0...v11.3.0) (2021-11-04)
+* Revert 11.2.0
+* Remove unused interfaces from dom.types
+
 ### [11.2.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v11.1.0...v11.2.0) (2021-09-09)
 * On folder/files drop validate accepted file extensions
 
