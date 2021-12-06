@@ -1,4 +1,7 @@
 ## Change Log
+### [13.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v12.0.0...v13.0.0) (2021-12-01)
+* Update to Angular 13
+
 ### [12.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v11.3.0...v12.0.0) (2021-12-01)
 * Update to Angular 12
 

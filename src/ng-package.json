@@ -1,0 +1,8 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "flatModuleFile": "ngx-file-drop",
+    "entryFile": "index.ts"
+  },
+  "dest": "../dist"
+}
