@@ -1,0 +1,14 @@
+<h2>
+  ngx-file-drop-example
+</h2>
+<div class="w-50">
+  <div class="pb-2">
+    <ngx-toggle [(checked)]="disabled"></ngx-toggle>
+  </div>
+  <div class="pb-2">
+    <ngx-file-drop [accept]="'*'" [disabled]="disabled" [multiple]="true" (onFileDrop)="dropped($event)"></ngx-file-drop>
+  </div>
+  <div class="pb-2">
+    {{entries | json}}
+  </div>
+</div>

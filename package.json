@@ -5,9 +5,10 @@
     "npm": ">= 6.9.0"
   },
   "scripts": {
+    "start": "ng serve",
     "clean": "rimraf out-tsc dist/*",
     "prebuild": "npm run clean",
-    "build": "ng-packagr -p src/package.json",
+    "build:lib": "ng build ngx-file-drop --configuration=production",
     "lint": "ng lint"
   },
   "devDependencies": {
@@ -45,6 +46,7 @@
     "zone.js": "~0.11.4"
   },
   "dependencies": {
+    "@bobbyg603/ngx-toggle": "^2.0.0",
     "tslib": "^2.3.0"
   }
 }

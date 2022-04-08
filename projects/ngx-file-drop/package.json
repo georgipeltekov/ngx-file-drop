@@ -1,5 +1,4 @@
 {
-  "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "@bugsplat/ngx-file-drop",
   "version": "13.0.0",
   "description": "Angular ngx-file-drop - Simple desktop file drag and drop",
@@ -39,12 +38,5 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0"
-  },
-  "ngPackage": {
-    "lib": {
-      "flatModuleFile": "ngx-file-drop",
-      "entryFile": "index.ts"
-    },
-    "dest": "../dist"
   }
 }

@@ -5,20 +5,24 @@
   "projects": {
     "ngx-file-drop": {
       "projectType": "library",
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/ngx-file-drop",
+      "sourceRoot": "projects/ngx-file-drop/src",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "src/tsconfig.json",
-            "project": "src/package.json"
+            "project": "projects/ngx-file-drop/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "src/tsconfig.json"
+              "tsConfig": "projects/ngx-file-drop/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-file-drop/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -29,6 +33,109 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "ngx-file-drop-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/ngx-file-drop-example",
+      "sourceRoot": "projects/ngx-file-drop-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-file-drop-example",
+            "index": "projects/ngx-file-drop-example/src/index.html",
+            "main": "projects/ngx-file-drop-example/src/main.ts",
+            "polyfills": "projects/ngx-file-drop-example/src/polyfills.ts",
+            "tsConfig": "projects/ngx-file-drop-example/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ngx-file-drop-example/src/favicon.ico",
+              "projects/ngx-file-drop-example/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-file-drop-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-file-drop-example/src/environments/environment.ts",
+                  "with": "projects/ngx-file-drop-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-file-drop-example:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-file-drop-example:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-file-drop-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-file-drop-example/src/test.ts",
+            "polyfills": "projects/ngx-file-drop-example/src/polyfills.ts",
+            "tsConfig": "projects/ngx-file-drop-example/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-file-drop-example/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ngx-file-drop-example/src/favicon.ico",
+              "projects/ngx-file-drop-example/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-file-drop-example/src/styles.scss"
+            ],
+            "scripts": []
           }
         }
       }
