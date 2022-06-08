@@ -34,9 +34,10 @@
   },
   "cli": {
     "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
-  "defaultProject": "ngx-file-drop",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ngx",
