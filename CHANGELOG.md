@@ -1,4 +1,7 @@
 ## Change Log
+### [14.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v14.0.0...v14.0.1) (2022-06-27)
+* Use getAsFile when possible
+
 ### [14.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v13.0.0...v14.0.0) (2022-06-08)
 * Update to Angular 14
 
