@@ -153,18 +153,19 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public dropFiles(event: DragEvent): void {
-    if (!this.isDropzoneDisabled()) {
-      this.isDraggingOverDropZone = false;
-      if (event.dataTransfer) {
-        let items: FileList | DataTransferItemList;
-        if (event.dataTransfer.items) {
-          items = event.dataTransfer.items;
-        } else {
-          items = event.dataTransfer.files;
-        }
-        this.preventAndStop(event);
-        this.checkFiles(items);
+    if (this.isDropzoneDisabled()) {
+      return;
+    }
+    this.isDraggingOverDropZone = false;
+    if (event.dataTransfer) {
+      let items: FileList | DataTransferItemList;
+      if (event.dataTransfer.items) {
+        items = event.dataTransfer.items;
+      } else {
+        items = event.dataTransfer.files;
       }
+      this.preventAndStop(event);
+      this.checkFiles(items);
     }
   }
 
@@ -179,36 +180,42 @@ export class NgxFileDropComponent implements OnDestroy {
    * @param Event event
    */
   public uploadFiles(event: Event): void {
-    if (!this.isDropzoneDisabled()) {
-      if (event.target) {
-        const items = (event.target as HTMLInputElement).files || ([] as any);
-        this.checkFiles(items);
-        this.resetFileInput();
-      }
+    if (this.isDropzoneDisabled()) {
+      return;
+    }
+    if (event.target) {
+      const items = (event.target as HTMLInputElement).files || ([] as any);
+      this.checkFiles(items);
+      this.resetFileInput();
     }
   }
 
-  private checkFiles(items: FileList | DataTransferItemList): void {
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      let entry: FileSystemEntry | null = null;
-      if (this.canGetAsEntry(item)) {
-        entry = item.webkitGetAsEntry();
+  private getFakeDropEntry(file: File): NgxFileDropEntry {
+    const fakeFileEntry: FileSystemFileEntry = {
+      name: file.name,
+      isDirectory: false,
+      isFile: true,
+      file: <T>(callback: (filea: File) => T) => callback(file),
+    };
+    return new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
+  }
+
+  private checkFile(item: DataTransferItem | File): void {
+    if (!item) {
+      return;
+    }
+    if ("getAsFile" in item) {
+      const file = item.getAsFile();
+      if (file) {
+        this.addToQueue(
+          this.getFakeDropEntry(file)
+        );
+        return;
       }
-
-      if (!entry) {
-        if (item) {
-          const fakeFileEntry: FileSystemFileEntry = {
-            name: (item as File).name,
-            isDirectory: false,
-            isFile: true,
-            file: <T>(callback: (filea: File) => T) => callback(item as File),
-          };
-          const toUpload: NgxFileDropEntry = new NgxFileDropEntry(fakeFileEntry.name, fakeFileEntry);
-          this.addToQueue(toUpload);
-        }
-
-      } else {
+    }
+    if ("webkitGetAsEntry" in item) {
+      let entry = item.webkitGetAsEntry();
+      if (entry) {
         if (entry.isFile) {
           const toUpload: NgxFileDropEntry = new NgxFileDropEntry(entry.name, entry);
           this.addToQueue(toUpload);
@@ -216,7 +223,15 @@ export class NgxFileDropComponent implements OnDestroy {
         } else if (entry.isDirectory) {
           this.traverseFileTree(entry, entry.name);
         }
+        return;
       }
+    }
+    this.addToQueue(this.getFakeDropEntry((item as File)));
+  }
+
+  private checkFiles(items: FileList | DataTransferItemList): void {
+    for (let i = 0; i < items.length; i++) {
+      this.checkFile(items[i]);
     }
 
     if (this.dropEventTimerSubscription) {
@@ -321,10 +336,6 @@ export class NgxFileDropComponent implements OnDestroy {
     }
 
     return this.fileInputPlaceholderEl;
-  }
-
-  private canGetAsEntry(item: any): item is DataTransferItem {
-    return !!item.webkitGetAsEntry;
   }
 
   private isDropzoneDisabled(): boolean {
