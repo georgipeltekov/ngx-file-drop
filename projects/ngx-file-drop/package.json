@@ -6,8 +6,8 @@
   "license": "MIT",
   "repository": "https://github.com/BugSplat-Git/ngx-file-drop",
   "engines": {
-    "node": ">= 10.0.0",
-    "npm": ">= 6.9.0"
+    "node": ">= 16.0.0",
+    "npm": ">= 7.0.0"
   },
   "keywords": [
     "angular2",
@@ -30,13 +30,15 @@
     "angular 11",
     "angular12",
     "angular 12",
+    "angular14",
+    "angular 14",
     "file drop",
     "file upload",
     "typescript",
     "drag and drop"
   ],
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0"
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0"
   }
 }
