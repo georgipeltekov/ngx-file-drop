@@ -1,50 +1,44 @@
 @import './variables.scss';
 
 .w-50 {
-    width: 50%;
+  width: 50%;
 }
 
 .pb-2 {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 :host ::ng-deep {
 
-    ngx-file-drop {
-      div.ngx-file-drop__drop-zone, div.ngx-file-drop__content {
-        height: 200px;
-        color: $colors-text-primary;
-        font-size: 18px;
-        font-weight: 400;
-        font-family: $font-family-standard;
-        flex-direction: column;
-        transition: all .2s ease-in-out;
-    
-        a {
-          color: $colors-blue-primary;
-        }
-    
-        &:hover {
-          border-color: $colors-text-primary;
-        }
-      }
-    
-      div.ngx-file-drop__drop-zone {
-        border: 3px dashed $colors-border
+  ngx-file-drop {
+    div.ngx-file-drop__content,
+    div.ngx-file-drop__drop-zone--enabled,
+    div.ngx-file-drop__drop-zone--disabled {
+      height: 200px;
+      border-radius: 30px;
+      color: $colors-text-primary;
+      font-size: 18px;
+      font-weight: 400;
+      font-family: $font-family-standard;
+      flex-direction: column;
+      transition: all .2s ease-in-out;
+
+      a {
+        color: $colors-blue-primary;
       }
     }
-  
-    ngx-file-drop[ng-reflect-disabled="true"] {
-  
-      div.ngx-file-drop__drop-zone, div.ngx-file-drop__content {
-        * {
-          color: $colors-border;
-        }
-      }
-  
-      div.ngx-file-drop__drop-zone:hover {
-        border: 3px dashed $colors-border;
-      }
+
+    div.ngx-file-drop__drop-zone--enabled,
+    div.ngx-file-drop__drop-zone--disabled {
+      border: 3px dashed $colors-border
+    }
+
+    div.ngx-file-drop__drop-zone--enabled:hover {
+      border-color: $colors-text-primary;
+    }
+
+    div.ngx-file-drop__drop-zone--disabled:hover {
+      border: 3px dashed $colors-border;
     }
   }
-  
+}
