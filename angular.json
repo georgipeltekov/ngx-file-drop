@@ -143,7 +143,6 @@
   "cli": {
     "analytics": false
   },
-  "defaultProject": "ngx-file-drop",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ngx",
