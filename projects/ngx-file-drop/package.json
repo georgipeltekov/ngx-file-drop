@@ -1,6 +1,6 @@
 {
   "name": "@bugsplat/ngx-file-drop",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Angular ngx-file-drop - Simple desktop file drag and drop",
   "author": "@bobbyg603",
   "license": "MIT",
