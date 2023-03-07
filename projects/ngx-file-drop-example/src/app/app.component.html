@@ -1,0 +1,15 @@
+<h2>
+  ngx-file-drop-example
+</h2>
+<div class="w-50">
+  <div class="pb-2">
+    <input type="checkbox" [checked]="checked" (change)="onChange($event)"> Enabled?
+  </div>
+  <div class="pb-2">
+    <ngx-file-drop [accept]="'*'" [dropZoneClassName]="className" [disabled]="!checked" [multiple]="true"
+      (onFileDrop)="dropped($event)"></ngx-file-drop>
+  </div>
+  <div class="pb-2">
+    {{entries | json}}
+  </div>
+</div>
