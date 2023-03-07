@@ -5,9 +5,11 @@
     "npm": ">= 8.1.0"
   },
   "scripts": {
+    "prestart": "npm run build",
+    "start": "ng serve",
     "clean": "rimraf out-tsc dist/*",
     "prebuild": "npm run clean",
-    "build": "ng-packagr -p src/ng-package.json",
+    "build": "ng build ngx-file-drop --configuration=production",
     "lint": "ng lint"
   },
   "devDependencies": {
