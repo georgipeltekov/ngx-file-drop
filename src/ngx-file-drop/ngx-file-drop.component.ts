@@ -204,15 +204,15 @@ export class NgxFileDropComponent implements OnDestroy {
     if (!item) {
       return;
     }
-    if ("getAsFile" in item) {
-      const file = item.getAsFile();
-      if (file) {
-        this.addToQueue(
-          this.getFakeDropEntry(file)
-        );
-        return;
-      }
-    }
+    // if ("getAsFile" in item) {
+    //   const file = item.getAsFile();
+    //   if (file) {
+    //     this.addToQueue(
+    //       this.getFakeDropEntry(file)
+    //     );
+    //     return;
+    //   }
+    // }
     if ("webkitGetAsEntry" in item) {
       let entry = item.webkitGetAsEntry();
       if (entry) {
