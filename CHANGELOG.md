@@ -1,4 +1,10 @@
 ## Change Log
+### [15.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v14.0.2...v15.0.0) (2023-03-07)
+* Update to Angular 15
+
+### [14.0.2](https://github.com/georgipeltekov/ngx-file-drop/compare/v14.0.1...v14.0.2) (2022-11-23)
+* Regression fix due to getAsFile
+
 ### [14.0.1](https://github.com/georgipeltekov/ngx-file-drop/compare/v14.0.0...v14.0.1) (2022-06-27)
 * Use getAsFile when possible
 
