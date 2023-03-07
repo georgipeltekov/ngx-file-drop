@@ -64,10 +64,10 @@ export class NgxFileDropComponent implements OnDestroy {
   public onFileLeave: EventEmitter<any> = new EventEmitter();
 
   // custom templates
-  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef }) contentTemplate: TemplateRef<any>;
+  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef }) contentTemplate?: TemplateRef<any>;
 
   @ViewChild('fileSelector', { static: true })
-  public fileSelector: ElementRef;
+  public fileSelector?: ElementRef;
 
   public isDraggingOverDropZone: boolean = false;
 
@@ -204,15 +204,15 @@ export class NgxFileDropComponent implements OnDestroy {
     if (!item) {
       return;
     }
-    if ("getAsFile" in item) {
-      const file = item.getAsFile();
-      if (file) {
-        this.addToQueue(
-          this.getFakeDropEntry(file)
-        );
-        return;
-      }
-    }
+    // if ("getAsFile" in item) {
+    //   const file = item.getAsFile();
+    //   if (file) {
+    //     this.addToQueue(
+    //       this.getFakeDropEntry(file)
+    //     );
+    //     return;
+    //   }
+    // }
     if ("webkitGetAsEntry" in item) {
       let entry = item.webkitGetAsEntry();
       if (entry) {
