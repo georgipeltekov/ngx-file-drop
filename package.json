@@ -13,7 +13,7 @@
     "lint": "ng lint"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^15.2.1",
+    "@angular-devkit/build-angular": "^15.2.6",
     "@angular-devkit/core": "^15.2.1",
     "@angular-eslint/builder": "15.2.1",
     "@angular-eslint/eslint-plugin": "15.2.1",
