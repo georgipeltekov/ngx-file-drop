@@ -1,4 +1,7 @@
 ## Change Log
+### [16.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v15.0.0...v16.0.0) (2023-06-19)
+* Update to Angular 16
+
 ### [15.0.0](https://github.com/georgipeltekov/ngx-file-drop/compare/v14.0.2...v15.0.0) (2023-03-07)
 * Update to Angular 15
 
