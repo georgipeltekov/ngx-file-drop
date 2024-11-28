@@ -1,33 +1,38 @@
-<div [className]="dropZoneClassName"
+<div [className]="dropZoneClassName()"
      [class.ngx-file-drop__drop-zone--over]="isDraggingOverDropZone"
      (drop)="dropFiles($event)"
      (dragover)="onDragOver($event)"
      (dragenter)="onDragEnter($event)"
      (dragleave)="onDragLeave($event)">
-  <div [className]="contentClassName">
-    <input 
-      type="file" 
-      #fileSelector 
-      [accept]="accept" 
-      [attr.directory]="directory || undefined" 
-      [attr.webkitdirectory]="directory || undefined"
-      [attr.mozdirectory]="directory || undefined"
-      [attr.msdirectory]="directory || undefined"
-      [attr.odirectory]="directory || undefined"
-      [multiple]="multiple"
-      (change)="uploadFiles($event)" 
-      class="ngx-file-drop__file-input" 
+  <div [className]="contentClassName()">
+    <input
+      type="file"
+      #fileSelector
+      [accept]="accept()"
+      [attr.directory]="directory() || undefined"
+      [attr.webkitdirectory]="directory() || undefined"
+      [attr.mozdirectory]="directory() || undefined"
+      [attr.msdirectory]="directory() || undefined"
+      [attr.odirectory]="directory() || undefined"
+      [multiple]="multiple()"
+      (change)="uploadFiles($event)"
+      class="ngx-file-drop__file-input"
     />
 
     <ng-template #defaultContentTemplate>
-      <div *ngIf="dropZoneLabel" class="ngx-file-drop__drop-zone-label">{{dropZoneLabel}}</div>
-      <div *ngIf="showBrowseBtn">
-        <input type="button" [className]="browseBtnClassName" value="{{browseBtnLabel}}" (click)="openFileSelector($event)" />
-      </div>
+      @if (dropZoneLabel()) {
+        <div class="ngx-file-drop__drop-zone-label">{{dropZoneLabel()}}</div>
+      }
+
+      @if (showBrowseBtn()) {
+        <div>
+          <input type="button" [className]="browseBtnClassName()" value="{{browseBtnLabel()}}" (click)="openFileSelector($event)" />
+        </div>
+      }
     </ng-template>
 
     <ng-template
-      [ngTemplateOutlet]="contentTemplate || defaultContentTemplate"
+      [ngTemplateOutlet]="contentTemplate() || defaultContentTemplate"
       [ngTemplateOutletContext]="{ openFileSelector: openFileSelector }">
     </ng-template>
   </div>

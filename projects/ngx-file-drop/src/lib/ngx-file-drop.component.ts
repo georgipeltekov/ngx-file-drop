@@ -1,21 +1,20 @@
 import {
   Component,
-  ContentChild,
+  contentChild,
   ElementRef,
-  EventEmitter,
+  input,
   Input,
   NgZone,
   OnDestroy,
-  Output,
+  output,
   Renderer2,
-  TemplateRef,
-  ViewChild
+  viewChild
 } from '@angular/core';
-import { Subscription, timer } from 'rxjs';
+import {Subscription, timer} from 'rxjs';
 
-import { NgxFileDropEntry } from './ngx-file-drop-entry';
-import { FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry } from './dom.types';
-import { NgxFileDropContentTemplateDirective } from './ngx-templates.directive';
+import {NgxFileDropEntry} from './ngx-file-drop-entry';
+import {FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry} from './dom.types';
+import {NgxFileDropContentTemplateDirective} from './ngx-templates.directive';
 
 @Component({
   selector: 'ngx-file-drop',
@@ -24,50 +23,36 @@ import { NgxFileDropContentTemplateDirective } from './ngx-templates.directive';
 })
 export class NgxFileDropComponent implements OnDestroy {
 
-  @Input()
-  public accept: string = '*';
+  accept = input<string>('*');
 
-  @Input()
-  public directory: boolean = false;
+  directory = input<boolean>(false);
 
-  @Input()
-  public multiple: boolean = true;
+  multiple = input<boolean>(true);
 
-  @Input()
-  public dropZoneLabel: string = '';
+  dropZoneLabel = input<string>('');
 
-  @Input()
-  public dropZoneClassName: string = 'ngx-file-drop__drop-zone';
+  dropZoneClassName = input<string>('ngx-file-drop__drop-zone');
 
-  @Input()
-  public useDragEnter: boolean = false;
+  useDragEnter = input<boolean>(false);
 
-  @Input()
-  public contentClassName: string = 'ngx-file-drop__content';
+  contentClassName = input<string>('ngx-file-drop__content');
 
-  @Input()
-  public showBrowseBtn: boolean = false;
+  showBrowseBtn = input<boolean>(false);
 
-  @Input()
-  public browseBtnClassName: string = 'btn btn-primary btn-xs ngx-file-drop__browse-btn';
+  browseBtnClassName = input<string>('btn btn-primary btn-xs ngx-file-drop__browse-btn');
 
-  @Input()
-  public browseBtnLabel: string = 'Browse files';
+  browseBtnLabel = input<string>('Browse files');
 
-  @Output()
-  public onFileDrop: EventEmitter<NgxFileDropEntry[]> = new EventEmitter();
+  onFileDrop = output<NgxFileDropEntry[]>();
 
-  @Output()
-  public onFileOver: EventEmitter<any> = new EventEmitter();
+  onFileOver = output<any>();
 
-  @Output()
-  public onFileLeave: EventEmitter<any> = new EventEmitter();
+  onFileLeave = output<any>();
 
   // custom templates
-  @ContentChild(NgxFileDropContentTemplateDirective, { read: TemplateRef }) contentTemplate?: TemplateRef<any>;
+  contentTemplate = contentChild(NgxFileDropContentTemplateDirective);
 
-  @ViewChild('fileSelector', { static: true })
-  public fileSelector?: ElementRef;
+  fileSelector = viewChild<ElementRef>('fileSelector');
 
   public isDraggingOverDropZone: boolean = false;
 
@@ -117,12 +102,12 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public onDragOver(event: DragEvent): void {
-    if (this.useDragEnter) {
+    if (this.useDragEnter()) {
       this.preventAndStop(event);
       if (event.dataTransfer) {
         event.dataTransfer.dropEffect = 'copy';
       }
-    } else if (!this.isDropzoneDisabled() && !this.useDragEnter && event.dataTransfer) {
+    } else if (!this.isDropzoneDisabled() && !this.useDragEnter() && event.dataTransfer) {
       if (!this.isDraggingOverDropZone) {
         this.isDraggingOverDropZone = true;
         this.onFileOver.emit(event);
@@ -133,7 +118,7 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public onDragEnter(event: Event): void {
-    if (!this.isDropzoneDisabled() && this.useDragEnter) {
+    if (!this.isDropzoneDisabled() && this.useDragEnter()) {
       if (!this.isDraggingOverDropZone) {
         this.isDraggingOverDropZone = true;
         this.onFileOver.emit(event);
@@ -170,8 +155,8 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   public openFileSelector = (event?: MouseEvent): void => {
-    if (this.fileSelector && this.fileSelector.nativeElement) {
-      (this.fileSelector.nativeElement as HTMLInputElement).click();
+    if (this.fileSelector() && this.fileSelector()?.nativeElement) {
+      (this.fileSelector()?.nativeElement as HTMLInputElement).click();
     }
   };
 
@@ -294,8 +279,8 @@ export class NgxFileDropComponent implements OnDestroy {
    * Clears any added files from the file input element so the same file can subsequently be added multiple times.
    */
   private resetFileInput(): void {
-    if (this.fileSelector && this.fileSelector.nativeElement) {
-      const fileInputEl = this.fileSelector.nativeElement as HTMLInputElement;
+    if (this.fileSelector() && this.fileSelector()?.nativeElement) {
+      const fileInputEl = this.fileSelector()?.nativeElement as HTMLInputElement;
       const fileInputContainerEl = fileInputEl.parentElement;
       const helperFormEl = this.getHelperFormElement();
       const fileInputPlaceholderEl = this.getFileInputPlaceholderElement();
