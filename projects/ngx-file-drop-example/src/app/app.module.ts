@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxFileDropModule } from 'ngx-file-drop';
-import { AppComponent } from './app.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
+import { NgxFileDropComponent } from 'ngx-file-drop';
 
 @NgModule({
   declarations: [
@@ -10,10 +9,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    NgxFileDropModule,
+    NgxFileDropComponent
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

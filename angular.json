@@ -55,7 +55,7 @@
             },
             "index": "projects/ngx-file-drop-example/src/index.html",
             "polyfills": [
-              "projects/ngx-file-drop-example/src/polyfills.ts"
+              "zone.js"
             ],
             "tsConfig": "projects/ngx-file-drop-example/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -116,24 +116,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "buildTarget": "ngx-file-drop-example:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ngx-file-drop-example/src/test.ts",
-            "polyfills": "projects/ngx-file-drop-example/src/polyfills.ts",
-            "tsConfig": "projects/ngx-file-drop-example/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-file-drop-example/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/ngx-file-drop-example/src/favicon.ico",
-              "projects/ngx-file-drop-example/src/assets"
-            ],
-            "styles": [
-              "projects/ngx-file-drop-example/src/styles.scss"
-            ],
-            "scripts": []
           }
         }
       }

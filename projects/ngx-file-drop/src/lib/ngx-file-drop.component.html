@@ -32,7 +32,7 @@
     </ng-template>
 
     <ng-template
-      [ngTemplateOutlet]="contentTemplate() || defaultContentTemplate"
+      [ngTemplateOutlet]="contentTemplate() ?? defaultContentTemplate"
       [ngTemplateOutletContext]="{ openFileSelector: openFileSelector }">
     </ng-template>
   </div>

@@ -1,8 +1,8 @@
 {
   "repository": "georgipeltekov/ngx-file-drop",
   "engines": {
-    "node": ">= 16.13.0",
-    "npm": ">= 8.1.0"
+    "node": ">= 22.1.0",
+    "npm": ">= 10.7.0"
   },
   "scripts": {
     "prestart": "npm run build",
@@ -15,11 +15,11 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.12",
     "@angular-devkit/core": "^18.2.12",
-    "@angular-eslint/builder": "16.0.3",
-    "@angular-eslint/eslint-plugin": "16.0.3",
-    "@angular-eslint/eslint-plugin-template": "16.0.3",
-    "@angular-eslint/schematics": "16.0.3",
-    "@angular-eslint/template-parser": "16.0.3",
+    "@angular-eslint/builder": "18.4.2",
+    "@angular-eslint/eslint-plugin": "18.4.2",
+    "@angular-eslint/eslint-plugin-template": "18.4.2",
+    "@angular-eslint/schematics": "18.4.2",
+    "@angular-eslint/template-parser": "18.4.2",
     "@angular/cli": "^18.2.12",
     "@angular/common": "^18.2.13",
     "@angular/compiler": "^18.2.13",
@@ -27,15 +27,15 @@
     "@angular/core": "^18.2.13",
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
-    "eslint": "^8.39.0",
+    "@typescript-eslint/eslint-plugin": "7.11.0",
+    "@typescript-eslint/parser": "7.11.0",
+    "eslint": "8.57.0",
     "ng-packagr": "^18.2.1",
-    "rxjs": "^6.5.4",
+    "rxjs": "^7.8.1",
     "typescript": "^5.4.5",
     "zone.js": "~0.14.10"
   },
   "dependencies": {
-    "tslib": "^2.3.1"
+    "tslib": "^2.8.1"
   }
 }

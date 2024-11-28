@@ -29,7 +29,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NgxFileDropModule } from 'ngx-file-drop';
+import { NgxFileDropComponent } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgxFileDropModule
+    NgxFileDropComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -130,9 +130,12 @@ export class AppComponent {
                 </tr>
             </thead>
             <tbody class="upload-name-style">
-                <tr *ngFor="let item of files; let i=index">
-                    <td><strong>{{ item.relativePath }}</strong></td>
-                </tr>
+            @for(item of files; track $index) {
+              <tr>
+                <td><strong>{{ item.relativePath }}</strong></td>
+              </tr>
+            }
+                
             </tbody>
         </table>
     </div>

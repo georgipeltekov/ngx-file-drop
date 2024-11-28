@@ -3,11 +3,11 @@ import {
   contentChild,
   ElementRef,
   input,
-  Input,
   NgZone,
   OnDestroy,
   output,
   Renderer2,
+  TemplateRef,
   viewChild
 } from '@angular/core';
 import {Subscription, timer} from 'rxjs';
@@ -15,11 +15,16 @@ import {Subscription, timer} from 'rxjs';
 import {NgxFileDropEntry} from './ngx-file-drop-entry';
 import {FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry} from './dom.types';
 import {NgxFileDropContentTemplateDirective} from './ngx-templates.directive';
+import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
   selector: 'ngx-file-drop',
   templateUrl: './ngx-file-drop.component.html',
   styleUrls: ['./ngx-file-drop.component.scss'],
+  imports: [
+    NgTemplateOutlet
+  ],
+  standalone: true
 })
 export class NgxFileDropComponent implements OnDestroy {
 
@@ -50,7 +55,7 @@ export class NgxFileDropComponent implements OnDestroy {
   onFileLeave = output<any>();
 
   // custom templates
-  contentTemplate = contentChild(NgxFileDropContentTemplateDirective);
+  contentTemplate = contentChild<TemplateRef<any>>(NgxFileDropContentTemplateDirective as any);
 
   fileSelector = viewChild<ElementRef>('fileSelector');
 
@@ -70,12 +75,7 @@ export class NgxFileDropComponent implements OnDestroy {
 
   private _disabled: boolean = false;
 
-  public get disabled(): boolean { return this._disabled; }
-
-  @Input()
-  public set disabled(value: boolean) {
-    this._disabled = (value != null && `${value}` !== 'false');
-  }
+  disabled = input<boolean>(false);
 
   constructor(
     private zone: NgZone,
@@ -324,7 +324,7 @@ export class NgxFileDropComponent implements OnDestroy {
   }
 
   private isDropzoneDisabled(): boolean {
-    return (this.globalDraggingInProgress || this.disabled);
+    return (this.globalDraggingInProgress || this.disabled());
   }
 
   private addToQueue(item: NgxFileDropEntry): void {
