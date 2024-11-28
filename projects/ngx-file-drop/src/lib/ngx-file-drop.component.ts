@@ -11,7 +11,6 @@ import {
   viewChild
 } from '@angular/core';
 import {Subscription, timer} from 'rxjs';
-
 import {NgxFileDropEntry} from './ngx-file-drop-entry';
 import {FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry} from './dom.types';
 import {NgxFileDropContentTemplateDirective} from './ngx-templates.directive';

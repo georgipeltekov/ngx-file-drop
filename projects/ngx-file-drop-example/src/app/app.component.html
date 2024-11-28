@@ -6,7 +6,8 @@
     <input type="checkbox" [checked]="checked" (change)="onChange($event)"> Enabled?
   </div>
   <div class="pb-2">
-    <ngx-file-drop [accept]="'*'" [dropZoneClassName]="className" [disabled]="!checked" [multiple]="true" (onFileDrop)="dropped($event)"/>
+    <ngx-file-drop [accept]="'*'" [dropZoneClassName]="className" [disabled]="!checked" [multiple]="true"
+                   (onFileDrop)="dropped($event)"/>
   </div>
   <div class="pb-2">
     {{ entries | json }}
