@@ -17,13 +17,12 @@ import {NgxFileDropContentTemplateDirective} from './ngx-templates.directive';
 import {NgTemplateOutlet} from "@angular/common";
 
 @Component({
-  selector: 'ngx-file-drop',
-  templateUrl: './ngx-file-drop.component.html',
-  styleUrls: ['./ngx-file-drop.component.scss'],
-  imports: [
-    NgTemplateOutlet
-  ],
-  standalone: true
+    selector: 'ngx-file-drop',
+    templateUrl: './ngx-file-drop.component.html',
+    styleUrls: ['./ngx-file-drop.component.scss'],
+    imports: [
+        NgTemplateOutlet
+    ]
 })
 export class NgxFileDropComponent implements OnDestroy {
 
