@@ -1,4 +1,4 @@
-import { FileSystemEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from './dom.types';
+import {FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry} from './dom.types';
 
 /**
  * fileEntry is an instance of {@link FileSystemFileEntry} or {@link FileSystemDirectoryEntry}.
@@ -6,9 +6,9 @@ import { FileSystemEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from '
  * properties of the given {@link FileSystemEntry}.
  */
 export class NgxFileDropEntry {
-    constructor(
-        public relativePath: string,
-        public fileEntry: FileSystemEntry
-    ) {
-    }
+  constructor(
+    public relativePath: string,
+    public fileEntry: FileSystemEntry
+  ) {
+  }
 }

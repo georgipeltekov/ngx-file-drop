@@ -1,13 +1,13 @@
 {
   "name": "ngx-file-drop",
-  "version": "16.0.0",
+  "version": "18.0.0",
   "description": "Angular ngx-file-drop - Simple desktop file and folder drag and drop",
   "author": "Georgi Peltekov",
   "license": "MIT",
   "repository": "georgipeltekov/ngx-file-drop",
   "engines": {
-    "node": ">= 14.5.0",
-    "npm": ">= 6.9.0"
+    "node": ">= 22.1.0",
+    "npm": ">= 10.7.0"
   },
   "keywords": [
     "angular2",
@@ -34,6 +34,12 @@
     "angular 13",
     "angular14",
     "angular 14",
+    "angular15",
+    "angular 15",
+    "angular16",
+    "angular 16",
+    "angular18",
+    "angular 18",
     "file drop",
     "folder drop",
     "file upload",
@@ -42,7 +48,7 @@
     "drag and drop"
   ],
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0"
+    "@angular/common": ">=18.2.13",
+    "@angular/core": ">=18.2.12"
   }
 }

@@ -1,4 +1,3 @@
-
 export interface FileSystemEntry {
   name: string,
   isDirectory: boolean
@@ -24,11 +23,13 @@ export interface FileSystemFlags {
 export interface FileSystemDirectoryEntry extends FileSystemEntry {
   isDirectory: true
   isFile: false
+
   createReader(): FileSystemDirectoryReader
 }
 
 export interface FileSystemFileEntry extends FileSystemEntry {
   isDirectory: false
   isFile: true
+
   file<T>(callback: (file: File) => T): T
 }
