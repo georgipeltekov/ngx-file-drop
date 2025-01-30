@@ -1,14 +1,41 @@
-<h2>
-  ngx-file-drop-example
-</h2>
+<h2>ngx-file-drop-example</h2>
+
 <div class="w-50">
   <div class="pb-2">
-    <input type="checkbox" [checked]="checked" (change)="onChange($event)"> Enabled?
+    <input id="chkExample" type="checkbox" [checked]="checked" (change)="onChange($event)">
+    <label for="chkExample">Enabled?</label>
   </div>
-  <div class="pb-2">
-    <ngx-file-drop [accept]="'*'" [dropZoneClassName]="className" [disabled]="!checked" [multiple]="true"
-      (onFileDrop)="dropped($event)"></ngx-file-drop>
-  </div>
+
+  <!-- Example 1: Default Usage -->
+  <h3>Default File Drop</h3>
+  <ngx-file-drop
+    [accept]="'*'"
+    [dropZoneClassName]="className"
+    [disabled]="!checked"
+    [multiple]="true"
+    (onFileDrop)="dropped($event)">
+  </ngx-file-drop>
+
+  <!-- Example 2: Custom Labels -->
+  <h3>Custom Labels</h3>
+  <ngx-file-drop
+    [dropZoneLabel]="'Drop your files here!'"
+    [browseBtnLabel]="'Select Files'"
+    [browseBtnClassName]="'btn btn-success btn-sm'"
+    [dropZoneClassName]="'custom-drop-zone'"
+    (onFileDrop)="dropped($event)">
+  </ngx-file-drop>
+
+  <!-- Example 3: Directory Upload -->
+  <h3>Directory Upload Enabled</h3>
+  <ngx-file-drop
+    [directory]="true"
+    [dropZoneClassName]="'directory-upload'"
+    (onFileDrop)="dropped($event)">
+  </ngx-file-drop>
+
+  <!-- Display Uploaded Entries -->
+  <h3>Uploaded Entries</h3>
   <div class="pb-2">
     {{entries | json}}
   </div>

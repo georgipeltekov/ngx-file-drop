@@ -6,8 +6,8 @@
   "license": "MIT",
   "repository": "georgipeltekov/ngx-file-drop",
   "engines": {
-    "node": ">= 14.5.0",
-    "npm": ">= 6.9.0"
+    "node": ">= 20.18.2",
+    "npm": ">= 10.8.2"
   },
   "keywords": [
     "angular2",
@@ -34,6 +34,8 @@
     "angular 13",
     "angular14",
     "angular 14",
+    "angular19",
+    "angular 19",
     "file drop",
     "folder drop",
     "file upload",
@@ -42,7 +44,7 @@
     "drag and drop"
   ],
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0"
+    "@angular/common": ">=19.0.0",
+    "@angular/core": ">=19.0.0"
   }
 }
