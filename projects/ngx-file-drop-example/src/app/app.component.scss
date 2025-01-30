@@ -15,30 +15,53 @@
     div.ngx-file-drop__drop-zone--enabled,
     div.ngx-file-drop__drop-zone--disabled {
       height: 200px;
-      border-radius: 30px;
+      border-radius: 20px;
       color: $colors-text-primary;
       font-size: 18px;
       font-weight: 400;
       font-family: $font-family-standard;
-      flex-direction: column;
-      transition: all .2s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      padding: 10px;
 
       a {
         color: $colors-blue-primary;
       }
     }
 
-    div.ngx-file-drop__drop-zone--enabled,
-    div.ngx-file-drop__drop-zone--disabled {
-      border: 3px dashed $colors-border
+    div.ngx-file-drop__drop-zone--enabled {
+      border: 3px dashed $colors-border;
     }
 
     div.ngx-file-drop__drop-zone--enabled:hover {
       border-color: $colors-text-primary;
     }
 
+    div.ngx-file-drop__drop-zone--disabled {
+      border: 3px dashed $colors-border;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
     div.ngx-file-drop__drop-zone--disabled:hover {
       border: 3px dashed $colors-border;
+    }
+
+    /* Custom Styles */
+    .custom-drop-zone {
+      background-color: $colors-green-100;
+      border: 3px dashed $colors-green-500;
+      border-radius: 20px;
+      color: $colors-green-800;
+    }
+
+    .directory-upload {
+      background-color: $colors-purple-200;
+      border: 3px dashed $colors-purple-700;
+      border-radius: 20px;
+      color: $colors-purple-900;
     }
   }
 }
