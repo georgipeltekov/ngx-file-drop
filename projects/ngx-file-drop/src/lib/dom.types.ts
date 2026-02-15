@@ -32,3 +32,7 @@ export interface FileSystemFileEntry extends FileSystemEntry {
   isFile: true
   file<T>(callback: (file: File) => T): T
 }
+
+export function isDataTransferItem(item: DataTransferItem | File): item is DataTransferItem {
+  return "webkitGetAsEntry" in item && "getAsFile" in item;
+}

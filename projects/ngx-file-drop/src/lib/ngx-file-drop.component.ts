@@ -14,7 +14,7 @@ import {
 import { Subscription, timer } from 'rxjs';
 
 import { NgxFileDropEntry } from './ngx-file-drop-entry';
-import { FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry } from './dom.types';
+import { FileSystemDirectoryEntry, FileSystemEntry, FileSystemFileEntry, isDataTransferItem } from './dom.types';
 import { NgxFileDropContentTemplateDirective } from './ngx-templates.directive';
 
 @Component({
@@ -204,17 +204,8 @@ export class NgxFileDropComponent implements OnDestroy {
     if (!item) {
       return;
     }
-    // if ("getAsFile" in item) {
-    //   const file = item.getAsFile();
-    //   if (file) {
-    //     this.addToQueue(
-    //       this.getFakeDropEntry(file)
-    //     );
-    //     return;
-    //   }
-    // }
-    if ("webkitGetAsEntry" in item) {
-      let entry = item.webkitGetAsEntry();
+    if (isDataTransferItem(item)) {
+      const entry = item.webkitGetAsEntry();
       if (entry) {
         if (entry.isFile) {
           const toUpload: NgxFileDropEntry = new NgxFileDropEntry(entry.name, entry);
@@ -225,8 +216,14 @@ export class NgxFileDropComponent implements OnDestroy {
         }
         return;
       }
+
+      const file = item.getAsFile();
+      if (file) {
+        this.addToQueue(this.getFakeDropEntry(file));
+      }
+      return;
     }
-    this.addToQueue(this.getFakeDropEntry((item as File)));
+    this.addToQueue(this.getFakeDropEntry(item));
   }
 
   private checkFiles(items: FileList | DataTransferItemList): void {
