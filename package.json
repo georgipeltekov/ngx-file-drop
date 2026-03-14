@@ -22,7 +22,7 @@
     "@angular-eslint/template-parser": "16.0.3",
     "@angular/cli": "^21.1.0",
     "@angular/common": "^21.1.0",
-    "@angular/compiler": "^21.1.0",
+    "@angular/compiler": "^21.2.4",
     "@angular/compiler-cli": "^21.1.0",
     "@angular/core": "^16.1.1",
     "@angular/platform-browser": "^21.1.0",
